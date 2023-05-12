@@ -1,6 +1,6 @@
 ﻿namespace Cocaro
 {
-    partial class ThongTin
+    partial class Play
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panel1 = new Panel();
             SuspendLayout();
             // 
-            // ThongTin
+            // panel1
+            // 
+            panel1.Location = new Point(3, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(512, 517);
+            panel1.TabIndex = 0;
+            // 
+            // Play
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "ThongTin";
-            Text = "ThongTin";
+            ClientSize = new Size(800, 522);
+            Controls.Add(panel1);
+            Name = "Play";
+            Text = "Play";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Panel panel1;
     }
 }
