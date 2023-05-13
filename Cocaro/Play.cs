@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cocaro.Class;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,17 @@ namespace Cocaro
 {
     public partial class Play : Form
     {
+        #region
+        ChessBoardManager ChessBoard;
+        #endregion
         public Play()
         {
             InitializeComponent();
+            ChessBoard = new ChessBoardManager(pnlChessBoard);
+            ChessBoard.DrawChessBoard();
+        }
+        private void btnLaN_Click(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Kì 2 năm 2\\Lập trình mạng\\GitHub Push\\NT106DoAn\\Cocaro\\Cocaro.csproj",
+      "projectUniqueName": "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj",
       "projectName": "Cocaro",
-      "projectPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\GitHub Push\\NT106DoAn\\Cocaro\\Cocaro.csproj",
+      "projectPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj",
       "packagesPath": "C:\\Users\\HUY\\.nuget\\packages\\",
-      "outputPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\GitHub Push\\NT106DoAn\\Cocaro\\obj\\",
+      "outputPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HUY\\AppData\\Roaming\\NuGet\\NuGet.Config",
