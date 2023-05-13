@@ -19,7 +19,7 @@ namespace Cocaro
         public Play()
         {
             InitializeComponent();
-            ChessBoard = new ChessBoardManager(pnlChessBoard);
+            ChessBoard = new ChessBoardManager(pnlChessBoard, txtUsername, pictureBox2);
             ChessBoard.DrawChessBoard();
         }
         private void btnLaN_Click(object sender, EventArgs e)
