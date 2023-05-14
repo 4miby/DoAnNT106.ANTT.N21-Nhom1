@@ -1,6 +1,7 @@
 ﻿using Cocaro.Class;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,20 +15,45 @@ namespace Cocaro
         private Panel chessBoard;
         private int currentPlayer;
         private TextBox playername;
-        private PictureBox playerMark;
+        private PictureBox playermark;
         private List<List<Button>> matrix;
+
         public List<Player> Player { get => player; set => player = value; }
         public int CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
         public TextBox Playername { get => playername; set => playername = value; }
-        public PictureBox PlayerMark { get => playerMark; set => playerMark = value; }
+        public PictureBox Playermark { get => playermark; set => playermark = value; }
         public Panel ChessBoard { get => chessBoard; set => chessBoard = value; }
+        private event EventHandler playerMark;
+        public event EventHandler PlayerMark
+        {
+            add
+            {
+                playerMark += value;
+            }
+            remove
+            {
+                playerMark -= value;
+            }
+        }
+        private event EventHandler endedGame;
+        public event EventHandler EndedGame
+        {
+            add
+            {
+                endedGame += value;
+            }
+            remove
+            {
+                endedGame += value;
+            }
+        }
         #endregion
         #region Initialize
         public ChessBoardManager(Panel chessBoard, TextBox playerName, PictureBox mark)
         {
             this.ChessBoard = chessBoard;
             this.Playername = playerName;
-            this.PlayerMark = mark;
+            this.Playermark = mark;
             this.Player = new List<Player>()
             {
                 new Player("HuyVo",Image.FromFile(Application.StartupPath+"\\Resources\\x.png")),
@@ -41,6 +67,7 @@ namespace Cocaro
         #region Methods
         public void DrawChessBoard()
         {
+            ChessBoard.Enabled = true;
             matrix = new List<List<Button>>();
 
             Button oldbtn = new Button() { Width = 0, Location = new Point(0, 0) }; // tạo ô cũ để ơ mới có vị trí dịch phải từ ô cũ
@@ -75,14 +102,21 @@ namespace Cocaro
                  return;
             Mark(btn);
             ChangePlayer(); 
+            if(playerMark != null)
+            {
+                playerMark(this, new EventArgs());  
+            }
             if(isEndGame(btn))
             {
                 EndGame();
             }
         }
-        private void EndGame()
+        public void EndGame()
         {
-            MessageBox.Show("Kết thúc game","Win",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            if(endedGame!=null)
+            {
+                endedGame(this,new EventArgs());
+            }
         }
         private bool isEndGame(Button btn)
         {
@@ -117,7 +151,22 @@ namespace Cocaro
                 else // nếu khác thoát không đếm nửa
                     break;
             }
-            return countLeft + countRight==5;
+            int count = countLeft + countRight;
+            // Tô màu hàng chiến thắng
+            if(count >= 5)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (point.X - j >= 0) // Kiểm tra các phần tử bên trái
+                        if (matrix[point.Y][point.X - j].BackgroundImage == btn.BackgroundImage)
+                            matrix[point.Y][point.X - j].BackColor = Color.PeachPuff;
+
+                    if (point.X + j < Cons.CHESS_BOARD_WIDTH) // Kiểm tra các phần tử bên phải
+                        if (matrix[point.Y][point.X + j].BackgroundImage == btn.BackgroundImage)
+                            matrix[point.Y][point.X + j].BackColor = Color.PeachPuff;
+                }
+            }
+            return count >= 5;
         }
         // Xử lý hàng dọc
         private bool isEndVertical(Button btn)
@@ -139,7 +188,24 @@ namespace Cocaro
                 else
                     break;
             }
-            return countTop + countBot == 5;
+            int count = countTop + countBot;
+            if(count >= 5)
+            {
+                for(int j=0;j<5;j++)
+                {
+                    if(point.Y-j>=0)
+                    {
+                        if (matrix[point.Y - j][point.X].BackgroundImage==btn.BackgroundImage)
+                            matrix[point.Y - j][point.X].BackColor  = Color.PeachPuff;
+                    }
+                    if(point.Y+j<Cons.CHESS_BOARD_HEIGHT)
+                    {
+                        if (matrix[point.Y + j][point.X].BackgroundImage==btn.BackgroundImage)
+                            matrix[point.Y + j][point.X].BackColor= Color.PeachPuff;    
+                    }
+                }
+            }
+            return count >= 5;   
         }
         //Xử lý đường chéo chính
         private bool isEndPrimary(Button btn)
@@ -165,7 +231,7 @@ namespace Cocaro
                 else
                     break;
             }
-            return countTop + countBot == 5;
+            return countTop + countBot >= 5;
         }
         //Xử lý đường chéo phụ
         private bool isEndSub(Button btn)
@@ -191,7 +257,7 @@ namespace Cocaro
                 else
                     break;
             }
-            return countTop + countBot == 5;
+            return countTop + countBot >= 5;
         }
         private void Mark(Button btn)
         {
@@ -201,7 +267,7 @@ namespace Cocaro
         private void ChangePlayer()
         {
             Playername.Text = Player[CurrentPlayer].Name;
-            PlayerMark.Image = Player[CurrentPlayer].Mark;
+            Playermark.Image = Player[CurrentPlayer].Mark;
         }
         #endregion
 
