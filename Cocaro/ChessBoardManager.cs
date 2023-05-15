@@ -60,14 +60,16 @@ namespace Cocaro
                 new Player("LXL",Image.FromFile(Application.StartupPath+"\\Resources\\o.png"))
                 
             };
-            CurrentPlayer = 0;
-            ChangePlayer();
+            
         }
         #endregion
         #region Methods
         public void DrawChessBoard()
         {
             ChessBoard.Enabled = true;
+            ChessBoard.Controls.Clear();
+            CurrentPlayer = 0;
+            ChangePlayer();
             matrix = new List<List<Button>>();
 
             Button oldbtn = new Button() { Width = 0, Location = new Point(0, 0) }; // tạo ô cũ để ơ mới có vị trí dịch phải từ ô cũ

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.NetworkInformation;
 
 namespace Cocaro
 {
@@ -15,6 +16,7 @@ namespace Cocaro
     {
         #region
         ChessBoardManager ChessBoard;
+        SocketManager socket;
         #endregion
         public Play()
         {
@@ -26,8 +28,9 @@ namespace Cocaro
             prgbCoolDown.Maximum = Cons.COOL_DOWN_TIME;
             prgbCoolDown.Value = 0;
             tmCoolDown.Interval = Cons.COOL_DOWN_INTERVAL;
+            socket = new SocketManager();
 
-            ChessBoard.DrawChessBoard();
+            NewGame();
         }
 
         void ChessBoard_EndGame(object? sender, EventArgs e)
@@ -45,12 +48,16 @@ namespace Cocaro
         {
             tmCoolDown.Stop();
             pnlChessBoard.Enabled = false;
-            MessageBox.Show("Kết thúc");
+            MessageBox.Show("Kết thúc", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnLaN_Click(object sender, EventArgs e)
         {
-
+            socket.IP=txtLAN.Text;
+            if(socket.ConnectServer()==false)
+            {
+                socket.CreateServer();
+            }
         }
 
         private void tmCoolDown_Tick(object sender, EventArgs e)
@@ -59,6 +66,43 @@ namespace Cocaro
             if (prgbCoolDown.Value >= prgbCoolDown.Maximum)
             {
                 EndGame();
+            }
+        }
+        void NewGame()
+        {
+            prgbCoolDown.Value = 0;
+            tmCoolDown.Stop();
+            ChessBoard.DrawChessBoard();
+        }
+        void Quit()
+        {
+            Application.Exit();
+        }
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewGame();
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Quit();
+        }
+
+        private void Play_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Bạn có thực sự muốn thoát!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (res != DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void Play_Shown(object sender, EventArgs e)
+        {
+            txtLAN.Text=socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
+            if(String.IsNullOrEmpty(txtLAN.Text))
+            {
+                txtLAN.Text = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
             }
         }
     }
