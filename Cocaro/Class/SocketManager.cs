@@ -16,8 +16,8 @@ namespace Cocaro
         Socket client;
         public bool ConnectServer()
         {
-            IPEndPoint IPEP=new IPEndPoint(IPAddress.Parse(IP), PORT);
-            client=new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            IPEndPoint IPEP = new IPEndPoint(IPAddress.Parse(IP), PORT);
+            client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try
             {
                 client.Connect(IPEP);
@@ -31,13 +31,13 @@ namespace Cocaro
         Socket server;
         public void CreateServer()
         {
-            IPEndPoint IPEP=new IPEndPoint(IPAddress.Parse(IP), PORT);
+            IPEndPoint IPEP = new IPEndPoint(IPAddress.Parse(IP), PORT);
             server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             server.Bind(IPEP);
             server.Listen(10);
             Thread acceptClient = new Thread(() =>
             {
-                client=server.Accept();
+                client = server.Accept();
             }
             );
             acceptClient.IsBackground = true;
@@ -46,29 +46,29 @@ namespace Cocaro
         #endregion
 
         #region Both
-        public string IP="127.0.0.1";
+        public string IP = "127.0.0.1";
         public int PORT = 9999;
         public bool isServer = true;
         public const int BUFFER = 1024;
         public bool Send(object data)
         {
             byte[] Senddata = SerializeData(data);
-            
+
             return SendData(client, Senddata);
         }
         public object Receive()
         {
-            byte[] recvData=new byte[BUFFER];
+            byte[] recvData = new byte[BUFFER];
             bool isOK = ReceiveData(client, recvData);
-            return DeserializeData(recvData);       
+            return DeserializeData(recvData);
         }
-        private bool SendData(Socket target, byte[]data)
+        private bool SendData(Socket target, byte[] data)
         {
-            return target.Send(data) == 1 ? true : false; 
+            return target.Send(data) == 1 ? true : false;
         }
-        private bool ReceiveData(Socket target, byte[] data) 
+        private bool ReceiveData(Socket target, byte[] data)
         {
-            return target.Receive(data) == 1 ? true : false;    
+            return target.Receive(data) == 1 ? true : false;
         }
         /// Nén đối tượng thành mảng byte[]
         public byte[] SerializeData(Object o)

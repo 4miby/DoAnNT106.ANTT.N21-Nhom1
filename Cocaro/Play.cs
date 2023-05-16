@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
+using static Cocaro.Class.SocketData;
 
 namespace Cocaro
 {
@@ -42,6 +43,8 @@ namespace Cocaro
         {
             tmCoolDown.Start();
             prgbCoolDown.Value = 0;
+            socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", new Point(0, 0)));
+            //Listen();    
         }
 
         void EndGame()
@@ -57,6 +60,10 @@ namespace Cocaro
             if(socket.ConnectServer()==false)
             {
                 socket.CreateServer();
+            }
+            else
+            {
+                Listen();
             }
         }
 
@@ -77,6 +84,40 @@ namespace Cocaro
         void Quit()
         {
             Application.Exit();
+        }
+        void Listen()
+        {
+            Thread listenThread = new Thread(() =>
+            {
+                try
+                {
+                    SocketData data = (SocketData)socket.Receive();
+                    ProCessData(data);
+                }
+                catch { }
+            });
+            listenThread.IsBackground = true;
+            listenThread.Start();
+        }
+        private void ProCessData(SocketData data)
+        {
+            switch (data.Command)
+            {
+                case (int)SocketCommand.NOTIFY:
+                        MessageBox.Show(data.Message);
+                    break;
+                case (int)SocketCommand.SEND_POINT:
+                    ChessBoard.OtherPlayerMark(data.Point);
+                    break;
+                case (int)SocketCommand.NEW_GAME:
+                    MessageBox.Show(data.Message);
+                    break;
+                case (int)SocketCommand.QUIT:
+                    MessageBox.Show(data.Message);
+                    break;
+                default: break;
+            }
+            Listen();
         }
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {

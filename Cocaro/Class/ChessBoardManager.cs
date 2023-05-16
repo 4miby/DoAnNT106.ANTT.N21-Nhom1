@@ -58,9 +58,9 @@ namespace Cocaro
             {
                 new Player("HuyVo",Image.FromFile(Application.StartupPath+"\\Resources\\x.png")),
                 new Player("LXL",Image.FromFile(Application.StartupPath+"\\Resources\\o.png"))
-                
+
             };
-            
+
         }
         #endregion
         #region Methods
@@ -75,7 +75,7 @@ namespace Cocaro
             Button oldbtn = new Button() { Width = 0, Location = new Point(0, 0) }; // tạo ô cũ để ơ mới có vị trí dịch phải từ ô cũ
             for (int i = 0; i < Cons.CHESS_BOARD_HEIGHT; i++)
             {
-                matrix.Add(new List<Button>()); 
+                matrix.Add(new List<Button>());
                 for (int j = 0; j < Cons.CHESS_BOARD_WIDTH; j++)
                 {
                     Button btn = new Button()
@@ -87,7 +87,7 @@ namespace Cocaro
                         Tag = i.ToString() // Lưu lại vị trí button theo hàng
                     };
                     btn.Click += Btn_Click; // Tạo sự kiện click vào ô cờ
-                    ChessBoard.Controls.Add(btn); 
+                    ChessBoard.Controls.Add(btn);
                     matrix[i].Add(btn);
                     oldbtn = btn; // Lưu lại ô cũ từ ô mới
                 }
@@ -100,37 +100,54 @@ namespace Cocaro
         private void Btn_Click(object? sender, EventArgs e)
         {
             Button btn = sender as Button;
-            if ( btn.BackgroundImage != null)
-                 return;
+            if (btn.BackgroundImage != null)
+                return;
             Mark(btn);
-            ChangePlayer(); 
-            if(playerMark != null)
+            ChangePlayer();
+            if (playerMark != null)
             {
-                playerMark(this, new EventArgs());  
+                playerMark(this, new EventArgs());
             }
-            if(isEndGame(btn))
+            if (isEndGame(btn))
+            {
+                EndGame();
+            }
+        }
+        public void  OtherPlayerMark(Point point)
+        {
+            Button btn = matrix[point.Y][point.X];
+            if (btn.BackgroundImage != null)
+                return;
+            Mark(btn);
+            ChangePlayer();
+            if (playerMark != null)
+            {
+                playerMark(this, new EventArgs());
+            }
+            if (isEndGame(btn))
             {
                 EndGame();
             }
         }
         public void EndGame()
         {
-            if(endedGame!=null)
+            if (endedGame != null)
             {
-                endedGame(this,new EventArgs());
+                endedGame(this, new EventArgs());
             }
         }
         private bool isEndGame(Button btn)
         {
             return isEndHorizontal(btn) || isEndVertical(btn) || isEndPrimary(btn) || isEndSub(btn);
         }
+        #region xulythangthua
         // Hàm lấy vị trí của ô trong bàn cờ
         private Point GetChessPoint(Button btn)
         {
             int vertical = Convert.ToInt32(btn.Tag);
             int horizontal = matrix[vertical].IndexOf(btn);
-            Point point = new Point(horizontal,vertical);
-            
+            Point point = new Point(horizontal, vertical);
+
             return point;
         }
         //Xử lý hàng ngang
@@ -138,15 +155,15 @@ namespace Cocaro
         {
             Point point = GetChessPoint(btn);
             int countLeft = 0;
-            for(int i =point.X; i >= 0; i--) // Đếm từ ô vừa chọn về trái
+            for (int i = point.X; i >= 0; i--) // Đếm từ ô vừa chọn về trái
             {
                 if (matrix[point.Y][i].BackgroundImage == btn.BackgroundImage)
                     countLeft++;
                 else // nếu khác thoát không đếm nửa
                     break;
-            }    
+            }
             int countRight = 0;
-            for (int i = point.X+1; i <Cons.CHESS_BOARD_WIDTH; i++) // Đếm từ ô vừa chọn +1(không đếm thêm ô vừa chọn) về phải
+            for (int i = point.X + 1; i < Cons.CHESS_BOARD_WIDTH; i++) // Đếm từ ô vừa chọn +1(không đếm thêm ô vừa chọn) về phải
             {
                 if (matrix[point.Y][i].BackgroundImage == btn.BackgroundImage)
                     countRight++;
@@ -155,7 +172,7 @@ namespace Cocaro
             }
             int count = countLeft + countRight;
             // Tô màu hàng chiến thắng
-            if(count >= 5)
+            if (count >= 5)
             {
                 for (int j = 0; j < 5; j++)
                 {
@@ -175,15 +192,15 @@ namespace Cocaro
         {
             Point point = GetChessPoint(btn);
             int countTop = 0;
-            for (int i = point.Y; i >=0; i--) // Đếm từ ô vừa chọn lên trên đầu
+            for (int i = point.Y; i >= 0; i--) // Đếm từ ô vừa chọn lên trên đầu
             {
                 if (matrix[i][point.X].BackgroundImage == btn.BackgroundImage)
                     countTop++;
-                else 
+                else
                     break;
             }
             int countBot = 0;
-            for (int i = point.Y+1; i < Cons.CHESS_BOARD_HEIGHT; i++) 
+            for (int i = point.Y + 1; i < Cons.CHESS_BOARD_HEIGHT; i++)
             {
                 if (matrix[i][point.X].BackgroundImage == btn.BackgroundImage)
                     countBot++;
@@ -191,44 +208,44 @@ namespace Cocaro
                     break;
             }
             int count = countTop + countBot;
-            if(count >= 5)
+            if (count >= 5)
             {
-                for(int j=0;j<5;j++)
+                for (int j = 0; j < 5; j++)
                 {
-                    if(point.Y-j>=0)
+                    if (point.Y - j >= 0)
                     {
-                        if (matrix[point.Y - j][point.X].BackgroundImage==btn.BackgroundImage)
-                            matrix[point.Y - j][point.X].BackColor  = Color.PeachPuff;
+                        if (matrix[point.Y - j][point.X].BackgroundImage == btn.BackgroundImage)
+                            matrix[point.Y - j][point.X].BackColor = Color.PeachPuff;
                     }
-                    if(point.Y+j<Cons.CHESS_BOARD_HEIGHT)
+                    if (point.Y + j < Cons.CHESS_BOARD_HEIGHT)
                     {
-                        if (matrix[point.Y + j][point.X].BackgroundImage==btn.BackgroundImage)
-                            matrix[point.Y + j][point.X].BackColor= Color.PeachPuff;    
+                        if (matrix[point.Y + j][point.X].BackgroundImage == btn.BackgroundImage)
+                            matrix[point.Y + j][point.X].BackColor = Color.PeachPuff;
                     }
                 }
             }
-            return count >= 5;   
+            return count >= 5;
         }
         //Xử lý đường chéo chính
         private bool isEndPrimary(Button btn)
         {
             Point point = GetChessPoint(btn);
             int countTop = 0;
-            for (int i = 0; i <=point.X ; i++) 
+            for (int i = 0; i <= point.X; i++)
             {
                 if (point.X - i < 0 || point.Y - i < 0)
                     break;
-                if (matrix[point.Y-i][point.X-i].BackgroundImage == btn.BackgroundImage)
+                if (matrix[point.Y - i][point.X - i].BackgroundImage == btn.BackgroundImage)
                     countTop++;
                 else
                     break;
             }
             int countBot = 0;
-            for (int i = 1; i <=Cons.CHESS_WIDTH-point.X ; i++)
+            for (int i = 1; i <= Cons.CHESS_WIDTH - point.X; i++)
             {
                 if (point.X + i >= Cons.CHESS_BOARD_WIDTH || point.Y + i >= Cons.CHESS_BOARD_HEIGHT)
                     break;
-                if (matrix[point.Y+i][point.X+i].BackgroundImage == btn.BackgroundImage)
+                if (matrix[point.Y + i][point.X + i].BackgroundImage == btn.BackgroundImage)
                     countBot++;
                 else
                     break;
@@ -242,7 +259,7 @@ namespace Cocaro
             int countTop = 0;
             for (int i = 0; i <= point.X; i++)
             {
-                if (point.X + i >Cons.CHESS_BOARD_WIDTH || point.Y - i < 0)
+                if (point.X + i > Cons.CHESS_BOARD_WIDTH || point.Y - i < 0)
                     break;
                 if (matrix[point.Y - i][point.X + i].BackgroundImage == btn.BackgroundImage)
                     countTop++;
@@ -252,7 +269,7 @@ namespace Cocaro
             int countBot = 0;
             for (int i = 1; i <= Cons.CHESS_WIDTH - point.X; i++)
             {
-                if (point.X - i <0 || point.Y + i >= Cons.CHESS_BOARD_HEIGHT)
+                if (point.X - i < 0 || point.Y + i >= Cons.CHESS_BOARD_HEIGHT)
                     break;
                 if (matrix[point.Y + i][point.X - i].BackgroundImage == btn.BackgroundImage)
                     countBot++;
@@ -261,6 +278,7 @@ namespace Cocaro
             }
             return countTop + countBot >= 5;
         }
+        #endregion
         private void Mark(Button btn)
         {
             btn.BackgroundImage = Player[CurrentPlayer].Mark;
