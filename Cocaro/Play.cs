@@ -39,12 +39,15 @@ namespace Cocaro
             EndGame();
         }
 
-        void ChessBoard_PlayerMark(object? sender, EventArgs e)
+        void ChessBoard_PlayerMark(object? sender, ButtonClickEvent e)
         {
             tmCoolDown.Start();
+            pnlChessBoard.Enabled = false;
             prgbCoolDown.Value = 0;
-            socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", new Point(0, 0)));
-            //Listen();    
+
+            socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", e.ClickPoint));
+
+            Listen();    
         }
 
         void EndGame()
@@ -59,10 +62,14 @@ namespace Cocaro
             socket.IP=txtLAN.Text;
             if(socket.ConnectServer()==false)
             {
+                socket.isServer = true;
+                pnlChessBoard.Enabled = true;
                 socket.CreateServer();
             }
             else
             {
+                socket.isServer=false;
+                pnlChessBoard.Enabled=false;
                 Listen();
             }
         }
@@ -107,6 +114,12 @@ namespace Cocaro
                         MessageBox.Show(data.Message);
                     break;
                 case (int)SocketCommand.SEND_POINT:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        pnlChessBoard.Enabled = true;
+                        prgbCoolDown.Value = 0;
+                        tmCoolDown.Start();
+                    }));
                     ChessBoard.OtherPlayerMark(data.Point);
                     break;
                 case (int)SocketCommand.NEW_GAME:

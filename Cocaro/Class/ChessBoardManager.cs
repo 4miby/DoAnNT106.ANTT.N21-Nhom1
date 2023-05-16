@@ -23,8 +23,8 @@ namespace Cocaro
         public TextBox Playername { get => playername; set => playername = value; }
         public PictureBox Playermark { get => playermark; set => playermark = value; }
         public Panel ChessBoard { get => chessBoard; set => chessBoard = value; }
-        private event EventHandler playerMark;
-        public event EventHandler PlayerMark
+        private event EventHandler<ButtonClickEvent> playerMark;
+        public event EventHandler<ButtonClickEvent> PlayerMark
         {
             add
             {
@@ -106,7 +106,7 @@ namespace Cocaro
             ChangePlayer();
             if (playerMark != null)
             {
-                playerMark(this, new EventArgs());
+                playerMark(this, new ButtonClickEvent(GetChessPoint(btn)));
             }
             if (isEndGame(btn))
             {
@@ -120,10 +120,6 @@ namespace Cocaro
                 return;
             Mark(btn);
             ChangePlayer();
-            if (playerMark != null)
-            {
-                playerMark(this, new EventArgs());
-            }
             if (isEndGame(btn))
             {
                 EndGame();
@@ -291,5 +287,15 @@ namespace Cocaro
         }
         #endregion
 
+    }
+    public class ButtonClickEvent: EventArgs
+    {
+        private Point clickPoint;
+
+        public Point ClickPoint { get => clickPoint; set => clickPoint = value; }
+        public ButtonClickEvent(Point point) 
+        {
+            this.ClickPoint = point;
+        }
     }
 }
