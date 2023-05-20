@@ -13,7 +13,10 @@ namespace Cocaro.Class
         public static int CHESS_BOARD_WIDTH = 20;
         public static int CHESS_BOARD_HEIGHT = 20;
         public static int COOL_DOWN_STEP = 100;
-        public static int COOL_DOWN_TIME = 25000;
+        public static int COOL_DOWN_TIME = 20000;
         public static int COOL_DOWN_INTERVAL = 100;
+
+        public static string nameplayer;
+        public static int edgeChess = 28;
     }
 }

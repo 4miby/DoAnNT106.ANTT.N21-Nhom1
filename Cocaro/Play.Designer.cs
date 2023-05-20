@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Play));
             pnlChessBoard = new Panel();
             pictureBox1 = new PictureBox();
-            txtUsername = new TextBox();
+            txtChangePlayer = new TextBox();
             prgbCoolDown = new ProgressBar();
             pictureBox2 = new PictureBox();
             txtLAN = new TextBox();
@@ -46,6 +46,7 @@
             newGameToolStripMenuItem = new ToolStripMenuItem();
             quitToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
+            txtPlayerName = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             menuStrip1.SuspendLayout();
@@ -70,24 +71,25 @@
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
-            // txtUsername
+            // txtChangePlayer
             // 
-            txtUsername.Location = new Point(26, 105);
-            txtUsername.Name = "txtUsername";
-            txtUsername.ReadOnly = true;
-            txtUsername.Size = new Size(107, 27);
-            txtUsername.TabIndex = 2;
+            txtChangePlayer.Location = new Point(162, 62);
+            txtChangePlayer.Name = "txtChangePlayer";
+            txtChangePlayer.ReadOnly = true;
+            txtChangePlayer.Size = new Size(131, 27);
+            txtChangePlayer.TabIndex = 2;
+            txtChangePlayer.TextAlign = HorizontalAlignment.Center;
             // 
             // prgbCoolDown
             // 
-            prgbCoolDown.Location = new Point(161, 79);
+            prgbCoolDown.Location = new Point(162, 95);
             prgbCoolDown.Name = "prgbCoolDown";
             prgbCoolDown.Size = new Size(131, 27);
             prgbCoolDown.TabIndex = 3;
             // 
             // pictureBox2
             // 
-            pictureBox2.Location = new Point(205, 20);
+            pictureBox2.Location = new Point(204, 4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(52, 53);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -175,6 +177,7 @@
             // panel1
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Controls.Add(txtPlayerName);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnsend);
             panel1.Controls.Add(txtmess);
@@ -183,11 +186,19 @@
             panel1.Controls.Add(txtLAN);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(prgbCoolDown);
-            panel1.Controls.Add(txtUsername);
+            panel1.Controls.Add(txtChangePlayer);
             panel1.Location = new Point(588, 27);
             panel1.Name = "panel1";
             panel1.Size = new Size(304, 582);
             panel1.TabIndex = 11;
+            // 
+            // txtPlayerName
+            // 
+            txtPlayerName.Location = new Point(26, 105);
+            txtPlayerName.Name = "txtPlayerName";
+            txtPlayerName.Size = new Size(107, 27);
+            txtPlayerName.TabIndex = 10;
+            txtPlayerName.TextAlign = HorizontalAlignment.Center;
             // 
             // Play
             // 
@@ -216,7 +227,7 @@
 
         private Panel pnlChessBoard;
         private PictureBox pictureBox1;
-        private TextBox txtUsername;
+        private TextBox txtChangePlayer;
         private ProgressBar prgbCoolDown;
         private PictureBox pictureBox2;
         private TextBox txtLAN;
@@ -230,5 +241,6 @@
         private ToolStripMenuItem newGameToolStripMenuItem;
         private ToolStripMenuItem quitToolStripMenuItem;
         private Panel panel1;
+        private TextBox txtPlayerName;
     }
 }

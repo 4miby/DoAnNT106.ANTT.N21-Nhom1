@@ -10,19 +10,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
 using static Cocaro.Class.SocketData;
+using Microsoft.VisualBasic.Logging;
 
 namespace Cocaro
 {
     public partial class Play : Form
     {
-        #region
+        #region Properties
         ChessBoardManager ChessBoard;
         SocketManager socket;
+        Thread th;
+        public static int check = 0;
+        public static bool checktimeout, quitcheck = false;
         #endregion
+
         public Play()
         {
             InitializeComponent();
-            ChessBoard = new ChessBoardManager(pnlChessBoard, txtUsername, pictureBox2);
+            ChessBoard = new ChessBoardManager(pnlChessBoard, txtChangePlayer, pictureBox2);
             ChessBoard.EndedGame += ChessBoard_EndGame;
             ChessBoard.PlayerMark += ChessBoard_PlayerMark;
             prgbCoolDown.Step = Cons.COOL_DOWN_STEP;
@@ -30,12 +35,13 @@ namespace Cocaro
             prgbCoolDown.Value = 0;
             tmCoolDown.Interval = Cons.COOL_DOWN_INTERVAL;
             socket = new SocketManager();
-
             NewGame();
         }
 
         void ChessBoard_EndGame(object? sender, EventArgs e)
         {
+            MessageBox.Show("Đối thủ quá gà bạn đã chiến thắng!", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            socket.Send(new SocketData((int)SocketCommand.END_GAME, "", new Point()));
             EndGame();
         }
 
@@ -44,23 +50,22 @@ namespace Cocaro
             tmCoolDown.Start();
             pnlChessBoard.Enabled = false;
             prgbCoolDown.Value = 0;
-
+            checktimeout = false;
             socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", e.ClickPoint));
 
-            Listen();    
+            Listen();
         }
 
         void EndGame()
         {
             tmCoolDown.Stop();
             pnlChessBoard.Enabled = false;
-            MessageBox.Show("Kết thúc", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnLaN_Click(object sender, EventArgs e)
         {
-            socket.IP=txtLAN.Text;
-            if(socket.ConnectServer()==false)
+            socket.IP = txtLAN.Text;
+            if (socket.ConnectServer() == false)
             {
                 socket.isServer = true;
                 pnlChessBoard.Enabled = true;
@@ -68,8 +73,8 @@ namespace Cocaro
             }
             else
             {
-                socket.isServer=false;
-                pnlChessBoard.Enabled=false;
+                socket.isServer = false;
+                pnlChessBoard.Enabled = false;
                 Listen();
             }
         }
@@ -77,9 +82,14 @@ namespace Cocaro
         private void tmCoolDown_Tick(object sender, EventArgs e)
         {
             prgbCoolDown.PerformStep();
-            if (prgbCoolDown.Value >= prgbCoolDown.Maximum)
+            if (checktimeout)
             {
-                EndGame();
+                if (prgbCoolDown.Value >= prgbCoolDown.Maximum)
+                {
+                    EndGame();
+                    MessageBox.Show("Hết thời gian suy nghĩ rồi, cố gắng lần sau nhé", "Lose", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    socket.Send(new SocketData((int)SocketCommand.TIME_OUT, "", new Point()));
+                }
             }
         }
         void NewGame()
@@ -111,11 +121,12 @@ namespace Cocaro
             switch (data.Command)
             {
                 case (int)SocketCommand.NOTIFY:
-                        MessageBox.Show(data.Message);
+                    MessageBox.Show(data.Message);
                     break;
                 case (int)SocketCommand.SEND_POINT:
                     this.Invoke((MethodInvoker)(() =>
                     {
+                        checktimeout = true;
                         pnlChessBoard.Enabled = true;
                         prgbCoolDown.Value = 0;
                         tmCoolDown.Start();
@@ -123,18 +134,51 @@ namespace Cocaro
                     ChessBoard.OtherPlayerMark(data.Point);
                     break;
                 case (int)SocketCommand.NEW_GAME:
-                    MessageBox.Show(data.Message);
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        NewGame();
+                        pnlChessBoard.Enabled = false;
+                    }));
                     break;
                 case (int)SocketCommand.QUIT:
-                    MessageBox.Show(data.Message);
+                    //try
+                    //{
+                    //    this.Invoke((MethodInvoker)(() =>
+                    //    {
+                    //        MessageBox.Show("Đối thủ đã chạy mất dép", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //        EndGame();
+                    //        socket.close();
+                    //    }));
+                    //}
+                    //catch
+                    //{
+                    //socket.close();
+                    //}
                     break;
-                default: break;
+                case (int)SocketCommand.END_GAME:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        EndGame();
+                    MessageBox.Show("Nice try, Đối thủ quá hay cố gắng lần sau nhé", "Lose", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }));
+                    break;
+                case (int)SocketCommand.TIME_OUT:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        EndGame();
+                    MessageBox.Show("Đối thủ suy nghĩ quá lâu, bạn đã chiến thắng","Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }));
+                    break;
+                default:
+                    break;
             }
             Listen();
         }
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewGame();
+            socket.Send(new SocketData((int)SocketCommand.NEW_GAME, "", new Point()));
+            pnlChessBoard.Enabled=true;
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -149,12 +193,17 @@ namespace Cocaro
             {
                 e.Cancel = true;
             }
+            //else
+            //{
+            //    socket.Send(new SocketData((int)SocketCommand.QUIT, " ", new Point()));
+            //    socket.close();
+            //}
         }
 
         private void Play_Shown(object sender, EventArgs e)
         {
-            txtLAN.Text=socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
-            if(String.IsNullOrEmpty(txtLAN.Text))
+            txtLAN.Text = socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
+            if (String.IsNullOrEmpty(txtLAN.Text))
             {
                 txtLAN.Text = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
             }

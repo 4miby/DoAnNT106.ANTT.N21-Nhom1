@@ -28,6 +28,8 @@ namespace Cocaro.Class
             NOTIFY,
             NEW_GAME,
             QUIT,
+            END_GAME, 
+            TIME_OUT
         }
     }
 }

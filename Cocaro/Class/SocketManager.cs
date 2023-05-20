@@ -105,6 +105,21 @@ namespace Cocaro
             }
             return output;
         }
+        public void close()
+        {
+            try
+            {
+                client.Close();
+
+            }
+            catch { };
+            try
+            {
+                server.Close();
+
+            }
+            catch { };
+        }
         #endregion
     }
 }
