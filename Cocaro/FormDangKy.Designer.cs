@@ -79,6 +79,7 @@
             textBox4.BackColor = SystemColors.HighlightText;
             textBox4.Location = new Point(259, 263);
             textBox4.Name = "textBox4";
+            textBox4.PasswordChar = '*';
             textBox4.Size = new Size(228, 27);
             textBox4.TabIndex = 13;
             // 
@@ -87,6 +88,7 @@
             textBox3.BackColor = SystemColors.HighlightText;
             textBox3.Location = new Point(260, 212);
             textBox3.Name = "textBox3";
+            textBox3.PasswordChar = '*';
             textBox3.Size = new Size(228, 27);
             textBox3.TabIndex = 12;
             // 

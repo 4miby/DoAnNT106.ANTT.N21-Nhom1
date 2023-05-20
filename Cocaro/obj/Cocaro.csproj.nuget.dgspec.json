@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\projectmmt\\NT106DoAn\\Cocaro\\Cocaro.csproj": {}
+    "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj": {}
   },
   "projects": {
-    "D:\\projectmmt\\NT106DoAn\\Cocaro\\Cocaro.csproj": {
+    "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\projectmmt\\NT106DoAn\\Cocaro\\Cocaro.csproj",
+        "projectUniqueName": "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj",
         "projectName": "Cocaro",
-        "projectPath": "D:\\projectmmt\\NT106DoAn\\Cocaro\\Cocaro.csproj",
-        "packagesPath": "C:\\Users\\Computer\\.nuget\\packages\\",
-        "outputPath": "D:\\projectmmt\\NT106DoAn\\Cocaro\\obj\\",
+        "projectPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj",
+        "packagesPath": "C:\\Users\\HUY\\.nuget\\packages\\",
+        "outputPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Computer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HUY\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
