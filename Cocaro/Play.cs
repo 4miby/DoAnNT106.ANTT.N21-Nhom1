@@ -208,5 +208,10 @@ namespace Cocaro
                 txtLAN.Text = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
             }
         }
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+            string username = FormDangNhap.username;
+            txtUsername.Text = username;
+        }
     }
 }
