@@ -12,20 +12,15 @@ namespace Cocaro
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
-        private static string error;
+        private static string error = "Phone number doesn't exist!";
         public static void ShowError()
         {
             System.Windows.Forms.MessageBox.Show(error);
         }
         public static bool IsEqual(register user1, register user2)
         {
-            if (user1 == null && user2 == null) return false;
-            if (user1.PhoneNumber != user2.PhoneNumber)
-            {
-                error = "Phone number doesn't exist!";
-                return false;
-            } 
-            else if (user1.Password != user2.Password)
+            if (user1 == null || user2 == null) return false;
+            if (user1.Password != user2.Password)
             {
                 error = "Wrong password";
                 return false;
