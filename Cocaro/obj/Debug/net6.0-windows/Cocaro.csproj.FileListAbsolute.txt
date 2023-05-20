@@ -103,3 +103,33 @@ E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\re
 E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.pdb
 E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.genruntimeconfig.cache
 E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\ref\Cocaro.dll
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Cocaro.exe
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Cocaro.deps.json
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Cocaro.runtimeconfig.json
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Cocaro.dll
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Cocaro.pdb
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.csproj.AssemblyReference.cache
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.FormDangKy.resources
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.FormDangNhap.resources
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.client.resources
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.Play.resources
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.Properties.Resources.resources
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.ThongTin.resources
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.csproj.GenerateResource.cache
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.AssemblyInfoInputs.cache
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.AssemblyInfo.cs
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.csproj.CoreCompileInputs.cache
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.dll
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\refint\Cocaro.dll
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.pdb
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.genruntimeconfig.cache
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\ref\Cocaro.dll
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\FireSharp.dll
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Microsoft.Threading.Tasks.Extensions.dll
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Microsoft.Threading.Tasks.dll
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\System.Net.Http.Extensions.dll
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\System.Net.Http.Primitives.dll
+D:\New folder\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+D:\New folder\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.csproj.CopyComplete

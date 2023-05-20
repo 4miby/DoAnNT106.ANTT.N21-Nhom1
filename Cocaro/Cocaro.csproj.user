@@ -16,7 +16,7 @@
     <Compile Update="FormDangKy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Main Menu.cs">
+    <Compile Update="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -77,6 +77,8 @@
             txtUsername.ReadOnly = true;
             txtUsername.Size = new Size(107, 27);
             txtUsername.TabIndex = 2;
+            txtUsername.TextAlign = HorizontalAlignment.Center;
+            txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // prgbCoolDown
             // 

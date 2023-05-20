@@ -47,7 +47,7 @@ namespace Cocaro
 
             socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", e.ClickPoint));
 
-            Listen();    
+            Listen();
         }
 
         void EndGame()
@@ -59,8 +59,8 @@ namespace Cocaro
 
         private void btnLaN_Click(object sender, EventArgs e)
         {
-            socket.IP=txtLAN.Text;
-            if(socket.ConnectServer()==false)
+            socket.IP = txtLAN.Text;
+            if (socket.ConnectServer() == false)
             {
                 socket.isServer = true;
                 pnlChessBoard.Enabled = true;
@@ -68,8 +68,8 @@ namespace Cocaro
             }
             else
             {
-                socket.isServer=false;
-                pnlChessBoard.Enabled=false;
+                socket.isServer = false;
+                pnlChessBoard.Enabled = false;
                 Listen();
             }
         }
@@ -111,7 +111,7 @@ namespace Cocaro
             switch (data.Command)
             {
                 case (int)SocketCommand.NOTIFY:
-                        MessageBox.Show(data.Message);
+                    MessageBox.Show(data.Message);
                     break;
                 case (int)SocketCommand.SEND_POINT:
                     this.Invoke((MethodInvoker)(() =>
@@ -153,11 +153,16 @@ namespace Cocaro
 
         private void Play_Shown(object sender, EventArgs e)
         {
-            txtLAN.Text=socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
-            if(String.IsNullOrEmpty(txtLAN.Text))
+            txtLAN.Text = socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
+            if (String.IsNullOrEmpty(txtLAN.Text))
             {
                 txtLAN.Text = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
             }
+        }
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+            string username = FormDangNhap.username;
+            txtUsername.Text = username;
         }
     }
 }

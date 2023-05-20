@@ -7,11 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using FireSharp.Config;
+using FireSharp.Response;
+using FireSharp.Interfaces;
 namespace Cocaro
 {
     public partial class FormDangKy : Form
     {
+        IFirebaseConfig config = new FirebaseConfig
+        {
+            AuthSecret = "Y7HTwFyBihudSAw6bBQ85PsKcmCTJaEBNfQ7vxc7",
+            BasePath = "https://caro-79944-default-rtdb.firebaseio.com/"
+        };
+        IFirebaseClient client;
         public FormDangKy()
         {
             InitializeComponent();
@@ -20,15 +28,42 @@ namespace Cocaro
         private void Form2_Load(object sender, EventArgs e)
         {
             panel1.BackColor = Color.FromArgb(90, 0, 0, 0);
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Check your connection!");
+            }
+
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+            {
+                MessageBox.Show("Mời điền tất cả nội dung");
+            }
+            else if (textBox3.Text != textBox4.Text)
+            {
+                MessageBox.Show("Mật khẩu không tương đồng");
+            }
+            else
+            {
+                var register = new register
+                {
+                    Name = textBox1.Text,
+                    PhoneNumber = textBox2.Text,
+                    Password = textBox3.Text,
+                    ConfirmPassword = textBox4.Text,
+                };
+                SetResponse set = client.Set("users/" + textBox2.Text, register);
+                MessageBox.Show("Đăng ký thành công");
+                FormDangNhap formDangNhap = new FormDangNhap();
+                this.Hide();
+                formDangNhap.Show();
+            }
 
         }
     }
