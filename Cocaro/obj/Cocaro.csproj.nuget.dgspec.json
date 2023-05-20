@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HUY\\Downloads\\Cocaro\\Cocaro.csproj": {}
+    "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HUY\\Downloads\\Cocaro\\Cocaro.csproj": {
+    "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HUY\\Downloads\\Cocaro\\Cocaro.csproj",
+        "projectUniqueName": "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj",
         "projectName": "Cocaro",
-        "projectPath": "C:\\Users\\HUY\\Downloads\\Cocaro\\Cocaro.csproj",
+        "projectPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\Cocaro.csproj",
         "packagesPath": "C:\\Users\\HUY\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HUY\\Downloads\\Cocaro\\obj\\",
+        "outputPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\NT106DoAn\\Cocaro\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HUY\\AppData\\Roaming\\NuGet\\NuGet.Config",

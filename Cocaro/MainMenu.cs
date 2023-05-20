@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Cocaro
 {
-    public partial class client : Form
+    public partial class MainMenu : Form
     {
-        public client()
+        public MainMenu()
         {
             InitializeComponent();
         }

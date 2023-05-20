@@ -1,6 +1,6 @@
 ﻿namespace Cocaro
 {
-    partial class client
+    partial class MainMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(client));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             button3 = new Button();
             panel1 = new Panel();
             button4 = new Button();
             button2 = new Button();
             button1 = new Button();
-            textBox1 = new TextBox();
+            txtUsername = new TextBox();
             label1 = new Label();
             groupBox1 = new GroupBox();
             Online = new ListBox();
@@ -70,7 +70,7 @@
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(txtUsername);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(groupBox1);
             panel1.Controls.Add(pictureBox1);
@@ -125,13 +125,12 @@
             button1.Text = "Chơi với máy";
             button1.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // txtUsername
             // 
-            textBox1.Location = new Point(4, 118);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(109, 27);
-            textBox1.TabIndex = 8;
-            textBox1.Text = "Username";
+            txtUsername.Location = new Point(4, 118);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(109, 27);
+            txtUsername.TabIndex = 8;
             // 
             // label1
             // 
@@ -206,15 +205,15 @@
             label3.TextAlign = ContentAlignment.MiddleCenter;
             label3.Click += label3_Click;
             // 
-            // Form3
+            // MainMenu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(997, 542);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Form3";
-            Text = "Form3";
+            Name = "MainMenu";
+            Text = "Main_Menu";
             Load += Form3_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -235,7 +234,7 @@
         private PictureBox pictureBox1;
         private Panel panel2;
         private PictureBox pictureBox2;
-        private TextBox textBox1;
+        private TextBox txtUsername;
         private Button button4;
         private Button button2;
         private Button button1;
