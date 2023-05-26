@@ -57,7 +57,7 @@ namespace Cocaro
                 if (register.IsEqual(register, curuser))
                 {
                     FormDangNhap.username = register.Name.ToString();
-                    MainMenu mainMenu = new MainMenu();
+                    MainMenu mainMenu = new MainMenu(register.Name);
                     this.Hide();
                     mainMenu.Show();
                 }

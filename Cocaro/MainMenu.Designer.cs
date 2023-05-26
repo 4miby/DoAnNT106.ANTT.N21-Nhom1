@@ -32,7 +32,7 @@
             button3 = new Button();
             panel1 = new Panel();
             button4 = new Button();
-            button2 = new Button();
+            btnPlayVsPeople = new Button();
             button1 = new Button();
             txtUsername = new TextBox();
             label1 = new Label();
@@ -68,7 +68,7 @@
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(button4);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(btnPlayVsPeople);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(txtUsername);
             panel1.Controls.Add(label1);
@@ -97,19 +97,20 @@
             button4.Text = "Thoát";
             button4.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnPlayVsPeople
             // 
-            button2.BackColor = Color.Blue;
-            button2.FlatAppearance.BorderSize = 3;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.AliceBlue;
-            button2.Location = new Point(136, 274);
-            button2.Name = "button2";
-            button2.Size = new Size(386, 66);
-            button2.TabIndex = 10;
-            button2.Text = "Chơi với bạn";
-            button2.UseVisualStyleBackColor = false;
+            btnPlayVsPeople.BackColor = Color.Blue;
+            btnPlayVsPeople.FlatAppearance.BorderSize = 3;
+            btnPlayVsPeople.FlatStyle = FlatStyle.Popup;
+            btnPlayVsPeople.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPlayVsPeople.ForeColor = Color.AliceBlue;
+            btnPlayVsPeople.Location = new Point(136, 274);
+            btnPlayVsPeople.Name = "btnPlayVsPeople";
+            btnPlayVsPeople.Size = new Size(386, 66);
+            btnPlayVsPeople.TabIndex = 10;
+            btnPlayVsPeople.Text = "Chơi với bạn";
+            btnPlayVsPeople.UseVisualStyleBackColor = false;
+            btnPlayVsPeople.Click += button2_Click;
             // 
             // button1
             // 
@@ -236,7 +237,7 @@
         private PictureBox pictureBox2;
         private TextBox txtUsername;
         private Button button4;
-        private Button button2;
+        private Button btnPlayVsPeople;
         private Button button1;
     }
 }

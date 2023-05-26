@@ -120,10 +120,7 @@ namespace Cocaro
                 return;
             Mark(btn);
             ChangePlayer();
-            if (isEndGame(btn))
-            {
-                EndGame();
-            }
+            ChessBoard.Enabled = true;
         }
         public void EndGame()
         {
@@ -246,7 +243,21 @@ namespace Cocaro
                 else
                     break;
             }
-            return countTop + countBot >= 5;
+            int count = countTop + countBot;
+            if (count >= 5)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (point.Y - j >= 0 && point.X - j >= 0) // Kiểm tra các phần tử chéo trên
+                        if (matrix[point.Y - j][point.X - j].BackgroundImage == btn.BackgroundImage)
+                            matrix[point.Y - j][point.X - j].BackColor = Color.PeachPuff;
+
+                    if (point.Y + j < Cons.CHESS_HEIGHT && point.X + j < Cons.CHESS_WIDTH) // Kiểm tra các phần tử chéo dưới
+                        if (matrix[point.Y + j][point.X + j].BackgroundImage == btn.BackgroundImage)
+                            matrix[point.Y + j][point.X + j].BackColor = Color.PeachPuff;
+                }
+            }
+            return count >= 5;
         }
         //Xử lý đường chéo phụ
         private bool isEndSub(Button btn)
@@ -272,7 +283,21 @@ namespace Cocaro
                 else
                     break;
             }
-            return countTop + countBot >= 5;
+            int count = countTop + countBot;
+            if (count >= 5)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (point.Y - j >= 0 && point.X + j <= Cons.CHESS_WIDTH) // Kiểm tra các phần tử chéo trên
+                        if (matrix[point.Y - j][point.X + j].BackgroundImage == btn.BackgroundImage)
+                            matrix[point.Y - j][point.X + j].BackColor = Color.PeachPuff;
+
+                    if (point.Y + j < Cons.CHESS_HEIGHT && point.X - j >= 0) // Kiểm tra các phần tử chéo dưới
+                        if (matrix[point.Y + j][point.X - j].BackgroundImage == btn.BackgroundImage)
+                            matrix[point.Y + j][point.X - j].BackColor = Color.PeachPuff;
+                }
+            }
+            return count >= 5;
         }
         #endregion
         private void Mark(Button btn)

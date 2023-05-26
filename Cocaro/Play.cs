@@ -15,9 +15,10 @@ namespace Cocaro
 {
     public partial class Play : Form
     {
-        #region
+        #region Properties
         ChessBoardManager ChessBoard;
         SocketManager socket;
+        public static bool checktimeout;
         #endregion
         public Play()
         {
@@ -36,6 +37,8 @@ namespace Cocaro
 
         void ChessBoard_EndGame(object? sender, EventArgs e)
         {
+            socket.Send(new SocketData((int)SocketCommand.END_GAME, "", new Point()));
+            MessageBox.Show("Đối thủ quá gà bạn đã chiến thắng!", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
             EndGame();
         }
 
@@ -44,7 +47,7 @@ namespace Cocaro
             tmCoolDown.Start();
             pnlChessBoard.Enabled = false;
             prgbCoolDown.Value = 0;
-
+            checktimeout = false;
             socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", e.ClickPoint));
 
             Listen();
@@ -54,7 +57,6 @@ namespace Cocaro
         {
             tmCoolDown.Stop();
             pnlChessBoard.Enabled = false;
-            MessageBox.Show("Kết thúc", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnLaN_Click(object sender, EventArgs e)
@@ -62,12 +64,14 @@ namespace Cocaro
             socket.IP = txtLAN.Text;
             if (socket.ConnectServer() == false)
             {
+                checktimeout = true;
                 socket.isServer = true;
                 pnlChessBoard.Enabled = true;
                 socket.CreateServer();
             }
             else
             {
+                checktimeout = false;
                 socket.isServer = false;
                 pnlChessBoard.Enabled = false;
                 Listen();
@@ -77,9 +81,14 @@ namespace Cocaro
         private void tmCoolDown_Tick(object sender, EventArgs e)
         {
             prgbCoolDown.PerformStep();
-            if (prgbCoolDown.Value >= prgbCoolDown.Maximum)
+            if (checktimeout)
             {
-                EndGame();
+                if (prgbCoolDown.Value >= prgbCoolDown.Maximum)
+                {
+                    EndGame();
+                    MessageBox.Show("Hết thời gian suy nghĩ rồi, cố gắng lần sau nhé", "Lose", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    socket.Send(new SocketData((int)SocketCommand.TIME_OUT, "", new Point()));
+                }
             }
         }
         void NewGame()
@@ -116,6 +125,7 @@ namespace Cocaro
                 case (int)SocketCommand.SEND_POINT:
                     this.Invoke((MethodInvoker)(() =>
                     {
+                        checktimeout = true;
                         pnlChessBoard.Enabled = true;
                         prgbCoolDown.Value = 0;
                         tmCoolDown.Start();
@@ -127,6 +137,20 @@ namespace Cocaro
                     break;
                 case (int)SocketCommand.QUIT:
                     MessageBox.Show(data.Message);
+                    break;
+                case (int)SocketCommand.END_GAME:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        EndGame();
+                        MessageBox.Show("Nice try, Đối thủ quá hay cố gắng lần sau nhé", "Lose", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }));
+                    break;
+                case (int)SocketCommand.TIME_OUT:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        EndGame();
+                        MessageBox.Show("Đối thủ suy nghĩ quá lâu, bạn đã chiến thắng", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }));
                     break;
                 default: break;
             }
@@ -149,6 +173,14 @@ namespace Cocaro
             {
                 e.Cancel = true;
             }
+            else
+            {
+                try
+                {
+                    socket.close();
+                }
+                catch { }
+            }
         }
 
         private void Play_Shown(object sender, EventArgs e)
@@ -158,6 +190,7 @@ namespace Cocaro
             {
                 txtLAN.Text = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
             }
+            newGameToolStripMenuItem.Enabled = false;
         }
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
