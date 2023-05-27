@@ -39,6 +39,7 @@
             label2 = new Label();
             label1 = new Label();
             label4 = new Label();
+            panel2 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -185,12 +186,22 @@
             label4.Text = "CARO";
             label4.TextAlign = ContentAlignment.TopCenter;
             // 
+            // panel2
+            // 
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.Dock = DockStyle.Right;
+            panel2.Location = new Point(443, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(386, 573);
+            panel2.TabIndex = 3;
+            // 
             // FormDangNhap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackColor = SystemColors.Control;
             ClientSize = new Size(829, 573);
+            Controls.Add(panel2);
             Controls.Add(label4);
             Controls.Add(panel1);
             ForeColor = Color.PaleTurquoise;
@@ -217,5 +228,6 @@
         private CustomButton customButton1;
         private CustomButton customButton2;
         private Label label4;
+        private Panel panel2;
     }
 }
