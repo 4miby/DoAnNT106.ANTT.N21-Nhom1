@@ -57,6 +57,7 @@ namespace Cocaro
                     PhoneNumber = textBox2.Text,
                     Password = textBox3.Text,
                     ConfirmPassword = textBox4.Text,
+                    Elo = 400,
                 };
                 SetResponse set = client.Set("users/" + textBox2.Text, register);
                 MessageBox.Show("Đăng ký thành công");
