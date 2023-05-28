@@ -30,6 +30,8 @@ namespace Cocaro.Class
             QUIT,
             TIME_OUT,
             END_GAME,
+            YES,
+            NO,
         }
     }
 }

@@ -50,9 +50,24 @@ namespace Cocaro
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Close();
             th = new Thread(PlayGame);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+            th = new Thread(PlayvsAI);
+            th.SetApartmentState (ApartmentState.STA);
+            th.Start();
+        }
+
+        private void PlayvsAI(object? obj)
+        {
+            Application.Run(new Form1());
+        }
+            
     }
 }

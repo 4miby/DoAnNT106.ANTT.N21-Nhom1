@@ -7,6 +7,9 @@
     <Compile Update="Play.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PlayvsAI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ThongTin.cs">
       <SubType>Form</SubType>
     </Compile>

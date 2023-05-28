@@ -44,7 +44,7 @@ namespace Cocaro
             }
             remove
             {
-                endedGame += value;
+                endedGame -= value;
             }
         }
         #endregion
@@ -56,8 +56,8 @@ namespace Cocaro
             this.Playermark = mark;
             this.Player = new List<Player>()
             {
-                new Player("HuyVo",Image.FromFile(Application.StartupPath+"\\Resources\\x.png")),
-                new Player("LXL",Image.FromFile(Application.StartupPath+"\\Resources\\o.png"))
+                new Player("Huyvo",Image.FromFile(Application.StartupPath+"\\Resources\\x.png")),
+                new Player("LxL",Image.FromFile(Application.StartupPath+"\\Resources\\o.png"))
 
             };
 
@@ -120,7 +120,7 @@ namespace Cocaro
                 return;
             Mark(btn);
             ChangePlayer();
-            ChessBoard.Enabled = true;
+           // ChessBoard.Enabled = true;
         }
         public void EndGame()
         {

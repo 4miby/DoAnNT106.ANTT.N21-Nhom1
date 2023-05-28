@@ -201,3 +201,4 @@ D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\refint\Cocaro.dll
 D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.pdb
 D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.genruntimeconfig.cache
 D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\ref\Cocaro.dll
+E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.Form1.resources

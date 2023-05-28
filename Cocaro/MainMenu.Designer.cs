@@ -125,6 +125,7 @@
             button1.TabIndex = 9;
             button1.Text = "Chơi với máy";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_1;
             // 
             // txtUsername
             // 
@@ -132,6 +133,7 @@
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(109, 27);
             txtUsername.TabIndex = 8;
+            txtUsername.TextAlign = HorizontalAlignment.Center;
             // 
             // label1
             // 

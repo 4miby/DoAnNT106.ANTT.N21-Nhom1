@@ -37,9 +37,9 @@ namespace Cocaro
 
         void ChessBoard_EndGame(object? sender, EventArgs e)
         {
+            EndGame();  
             socket.Send(new SocketData((int)SocketCommand.END_GAME, "", new Point()));
             MessageBox.Show("Đối thủ quá gà bạn đã chiến thắng!", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            EndGame();
         }
 
         void ChessBoard_PlayerMark(object? sender, ButtonClickEvent e)
@@ -57,24 +57,34 @@ namespace Cocaro
         {
             tmCoolDown.Stop();
             pnlChessBoard.Enabled = false;
+            newGameToolStripMenuItem.Enabled = true;
         }
 
         private void btnLaN_Click(object sender, EventArgs e)
         {
             socket.IP = txtLAN.Text;
-            if (socket.ConnectServer() == false)
+            try
             {
-                checktimeout = true;
-                socket.isServer = true;
-                pnlChessBoard.Enabled = true;
-                socket.CreateServer();
+                if (socket.ConnectServer() == false)
+                {
+                    checktimeout = true;
+                    socket.isServer = true;
+                    pnlChessBoard.Enabled = true;
+                    socket.CreateServer();
+                }
+                else
+                {
+                    checktimeout = false;
+                    socket.isServer = false;
+                    pnlChessBoard.Enabled = false;
+                    Listen();
+                }
+
+                btnLaN.Enabled = false;
             }
-            else
+            catch
             {
-                checktimeout = false;
-                socket.isServer = false;
-                pnlChessBoard.Enabled = false;
-                Listen();
+                MessageBox.Show("Không thể kết nối qua Ip này");
             }
         }
 
@@ -133,7 +143,7 @@ namespace Cocaro
                     ChessBoard.OtherPlayerMark(data.Point);
                     break;
                 case (int)SocketCommand.NEW_GAME:
-                    MessageBox.Show(data.Message);
+                    request();
                     break;
                 case (int)SocketCommand.QUIT:
                     MessageBox.Show(data.Message);
@@ -142,14 +152,24 @@ namespace Cocaro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         EndGame();
-                        MessageBox.Show("Nice try, Đối thủ quá hay cố gắng lần sau nhé", "Lose", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }));
+                    MessageBox.Show("Nice try, Đối thủ quá hay cố gắng lần sau nhé", "Lose", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case (int)SocketCommand.TIME_OUT:
                     this.Invoke((MethodInvoker)(() =>
                     {
                         EndGame();
-                        MessageBox.Show("Đối thủ suy nghĩ quá lâu, bạn đã chiến thắng", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }));
+                    MessageBox.Show("Đối thủ suy nghĩ quá lâu, bạn đã chiến thắng", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case (int)SocketCommand.NO:
+                    MessageBox.Show("Đối thủ không muốn chơi tiếp, Hẹn lần sau!", "Từ chối", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case (int)SocketCommand.YES:
+                    MessageBox.Show("Đối thủ đồng ý", "chấp nhận", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        NewGame();
                     }));
                     break;
                 default: break;
@@ -158,7 +178,8 @@ namespace Cocaro
         }
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewGame();
+            socket.Send(new SocketData((int)SocketCommand.NEW_GAME, "", new Point()));
+
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -196,6 +217,23 @@ namespace Cocaro
         {
             string username = FormDangNhap.username;
             txtUsername.Text = username;
+        }
+        void request()
+        {
+            DialogResult res = MessageBox.Show("Đối thủ muốn chơi tiếp", "Mời", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                socket.Send(new SocketData((int)SocketCommand.YES, "", new Point()));
+                this.Invoke((MethodInvoker)(() =>
+                {
+                    NewGame();
+                    pnlChessBoard.Enabled = false;
+                }));
+            }
+            else
+            {
+                socket.Send(new SocketData((int)SocketCommand.NO, "", new Point()));
+            }
         }
     }
 }
