@@ -41,7 +41,7 @@ namespace Cocaro
         }
         private void button1_Click(object sender, EventArgs e)
         {
-                if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
             {
                 MessageBox.Show("Mời điền tất cả nội dung");
             }

@@ -135,13 +135,7 @@ namespace Cocaro
             pnlChessBoard.Enabled = false;
         }
 
-        void Quit()
-        {
-                this.Close();
-                Thread th = new Thread(reopenMenu);
-                th.SetApartmentState(ApartmentState.STA);
-                th.Start();
-        }
+                
         private void Check(int x, int y)
         {
             int i = x - 1, j = y;
@@ -435,7 +429,17 @@ namespace Cocaro
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Quit();
+            check = 1;
+            DialogResult dialog;
+            dialog = MessageBox.Show("Bạn có chắc muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialog == DialogResult.Yes)
+            {
+                this.Close();
+                Thread th = new Thread(reopenMenu);
+                th.SetApartmentState(ApartmentState.STA);
+                th.Start();
+            }
+            check = 0;
         }
         #endregion
 
@@ -446,9 +450,12 @@ namespace Cocaro
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult Q = MessageBox.Show("Bạn có chắc muốn thoát Game?", "Warning!", MessageBoxButtons.OKCancel);
-            if (Q == DialogResult.Cancel)
-                e.Cancel = true;
+            if (check == 0)
+            {
+                DialogResult Q = MessageBox.Show("Bạn có chắc muốn thoát Game?", "Warning!", MessageBoxButtons.OKCancel);
+                if (Q == DialogResult.Cancel)
+                    e.Cancel = true;
+            }
         }
     }
 }

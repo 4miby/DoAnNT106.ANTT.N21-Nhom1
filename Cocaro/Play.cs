@@ -106,6 +106,7 @@ namespace Cocaro
             prgbCoolDown.Value = 0;
             tmCoolDown.Stop();
             ChessBoard.DrawChessBoard();
+            newGameToolStripMenuItem.Enabled = false;
         }
         void Quit()
         {
@@ -228,6 +229,7 @@ namespace Cocaro
                 {
                     NewGame();
                     pnlChessBoard.Enabled = false;
+                    
                 }));
             }
             else

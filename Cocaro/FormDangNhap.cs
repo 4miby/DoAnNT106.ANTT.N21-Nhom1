@@ -7,6 +7,7 @@ namespace Cocaro
     public partial class FormDangNhap : Form
     {
         public static string username;
+        public static string sdt;
         IFirebaseConfig config = new FirebaseConfig
         {
             AuthSecret = "Y7HTwFyBihudSAw6bBQ85PsKcmCTJaEBNfQ7vxc7",
@@ -49,6 +50,7 @@ namespace Cocaro
             {
                 FirebaseResponse response = client.Get("users/" + textBox1.Text);
                 register register = response.ResultAs<register>();
+                
                 register curuser = new register()
                 {
                     PhoneNumber = textBox1.Text,
@@ -57,7 +59,8 @@ namespace Cocaro
                 if (register.IsEqual(register, curuser))
                 {
                     FormDangNhap.username = register.Name.ToString();
-                    MainMenu mainMenu = new MainMenu(register.Name);
+                    FormDangNhap.sdt=register.PhoneNumber.ToString();
+                    MainMenu mainMenu = new MainMenu(username);
                     this.Hide();
                     mainMenu.Show();
                 }

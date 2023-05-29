@@ -14,10 +14,12 @@ namespace Cocaro
     {
         Thread th;
         public string username;
+        public static string sdt;
         public MainMenu(string username)
         {
             InitializeComponent();
             this.username = username;
+            sdt = FormDangNhap.sdt;
         }
         private void Form3_Load(object sender, EventArgs e)
         {
@@ -42,7 +44,10 @@ namespace Cocaro
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            ThongTin thongtin = new ThongTin();
+            thongtin.ShowDialog();
+            this.Close();
         }
         void PlayGame()
         {
