@@ -56,9 +56,8 @@ namespace Cocaro
             this.Playermark = mark;
             this.Player = new List<Player>()
             {
-                new Player("Huyvo",Image.FromFile(Application.StartupPath+"\\Resources\\x.png")),
-                new Player("LxL",Image.FromFile(Application.StartupPath+"\\Resources\\o.png"))
-
+                new Player("player1",Image.FromFile(Application.StartupPath+"\\Resources\\x.png")),
+                new Player("player2",Image.FromFile(Application.StartupPath+"\\Resources\\o.png"))
             };
 
         }
@@ -68,7 +67,7 @@ namespace Cocaro
         {
             ChessBoard.Enabled = true;
             ChessBoard.Controls.Clear();
-            CurrentPlayer = 0;
+         //  CurrentPlayer = 0;
             ChangePlayer();
             matrix = new List<List<Button>>();
 
@@ -103,7 +102,7 @@ namespace Cocaro
             if (btn.BackgroundImage != null)
                 return;
             Mark(btn);
-            ChangePlayer();
+            //ChangePlayer();
             if (playerMark != null)
             {
                 playerMark(this, new ButtonClickEvent(GetChessPoint(btn)));
@@ -119,7 +118,11 @@ namespace Cocaro
             if (btn.BackgroundImage != null)
                 return;
             Mark(btn);
-            ChangePlayer();
+            //ChangePlayer();
+            //if (playerMark != null)
+            //{
+            //    playerMark(this, new ButtonClickEvent(GetChessPoint(btn)));
+            //}
         }
         public void EndGame()
         {

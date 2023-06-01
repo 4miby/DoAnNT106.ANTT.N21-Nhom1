@@ -8,10 +8,10 @@ namespace Cocaro
 {
     class register
     {
-        public string Name { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+        public string? Name { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? Password { get; set; }
+        public string? ConfirmPassword { get; set; }
         public int Elo { get; set; }
         private static string error = "Phone number doesn't exist!";
         public static void ShowError()

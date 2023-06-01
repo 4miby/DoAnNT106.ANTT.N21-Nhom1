@@ -50,7 +50,6 @@ namespace Cocaro
             {
                 FirebaseResponse response = client.Get("users/" + textBox1.Text);
                 register register = response.ResultAs<register>();
-
                 register curuser = new register()
                 {
                     PhoneNumber = textBox1.Text,

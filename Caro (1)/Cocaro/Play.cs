@@ -20,7 +20,10 @@ namespace Cocaro
         #region Properties
         ChessBoardManager ChessBoard;
         SocketManager socket;
-        public static bool checktimeout;
+        public static bool checktimeout, quitcheck = false;
+        List<Image> images;
+        static int index = 0, check = 0;
+
         #endregion
         public Play()
         {
@@ -33,7 +36,9 @@ namespace Cocaro
             prgbCoolDown.Value = 0;
             tmCoolDown.Interval = Cons.COOL_DOWN_INTERVAL;
             socket = new SocketManager();
-
+            images = new List<Image>();
+            images.Add(Image.FromFile(Application.StartupPath + "\\Resources\\o.png"));
+            images.Add(Image.FromFile(Application.StartupPath + "\\Resources\\x.png"));
             NewGame();
         }
 
@@ -51,6 +56,11 @@ namespace Cocaro
             prgbCoolDown.Value = 0;
             checktimeout = false;
             socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", e.ClickPoint));
+            pictureBox2.Image = images[index];
+            if (index == 1)
+                index = 0;
+            else
+                index = 1;
             Listen();
         }
 
@@ -59,11 +69,12 @@ namespace Cocaro
             tmCoolDown.Stop();
             pnlChessBoard.Enabled = false;
             newGameToolStripMenuItem.Enabled = true;
+            quitcheck = false;
         }
 
         private void btnLaN_Click(object sender, EventArgs e)
         {
-            socket.IP=txtLAN.Text;
+            socket.IP = txtLAN.Text;
             try
             {
                 if (socket.ConnectServer() == false)
@@ -72,12 +83,14 @@ namespace Cocaro
                     socket.isServer = true;
                     pnlChessBoard.Enabled = true;
                     socket.CreateServer();
+                    quitcheck = true;
                 }
                 else
                 {
                     checktimeout = false;
                     socket.isServer = false;
                     pnlChessBoard.Enabled = false;
+                    quitcheck = true;
                     Listen();
                 }
                 btnLaN.Enabled = false;
@@ -108,10 +121,6 @@ namespace Cocaro
             ChessBoard.DrawChessBoard();
             newGameToolStripMenuItem.Enabled = false;
         }
-        void Quit()
-        {
-            Application.Exit();
-        }
         void Listen()
         {
             Thread listenThread = new Thread(() =>
@@ -129,7 +138,7 @@ namespace Cocaro
         }
         private void ProCessData(SocketData data)
         {
-            
+
             switch (data.Command)
             {
                 case (int)SocketCommand.NOTIFY:
@@ -142,20 +151,38 @@ namespace Cocaro
                         pnlChessBoard.Enabled = true;
                         prgbCoolDown.Value = 0;
                         tmCoolDown.Start();
+                        pictureBox2.Image = images[index];
+                        if (index == 1)
+                            index = 0;
+                        else
+                            index = 1;
                         Listen();
                     }));
                     ChessBoard.OtherPlayerMark(data.Point);
                     break;
                 case (int)SocketCommand.NEW_GAME:
                     request();
+                    Listen();
                     break;
                 case (int)SocketCommand.QUIT:
-                    MessageBox.Show(data.Message);
+                    if (quitcheck == true)
+                    {
+                        this.Invoke((MethodInvoker)(() =>
+                        {
+                            check = 0;
+                            tmCoolDown.Stop();
+                            EndGame();
+                            MessageBox.Show("Đối thủ đã chạy mất dép", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            socket.close();
+                            // Win();
+                        }));
+                    }
                     break;
                 case (int)SocketCommand.END_GAME:
                     this.Invoke((MethodInvoker)(() =>
                     {
                         EndGame();
+                        Listen();
                     }));
                     MessageBox.Show("Nice try, Đối thủ quá hay cố gắng lần sau nhé", "Lose", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
@@ -163,6 +190,7 @@ namespace Cocaro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         EndGame();
+                        Listen();
                     }));
                     MessageBox.Show("Đối thủ suy nghĩ quá lâu, bạn đã chiến thắng", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
@@ -174,19 +202,19 @@ namespace Cocaro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         NewGame();
+                        Listen();
                     }));
                     break;
                 case (int)SocketCommand.SEND_MESS:
                     this.Invoke((MethodInvoker)(() =>
                     {
                         listView1.Items.Add(new ListViewItem(data.Message));
-
+                        Listen();
                     }));
                     break;
                 default:
                     break;
             }
-         //   Listen();
         }
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -195,23 +223,60 @@ namespace Cocaro
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Quit();
+            check = 1;
+            DialogResult Q = MessageBox.Show("Bạn có chắc muốn thoát trận đấu?", "Warning!", MessageBoxButtons.OKCancel);
+            if (Q == DialogResult.OK)
+            {
+                if (quitcheck)
+                {
+                    // Lose();
+                }
+
+                try
+                {
+                    socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
+                    socket.close();
+
+                }
+                catch
+                { }
+                this.Close();
+                Thread th = new Thread(reopenMenu);
+                th.SetApartmentState(ApartmentState.STA);
+                th.Start();
+            }
+            check = 0;
+        }
+
+        private void reopenMenu(object? obj)
+        {
+
+            Application.Run(new MainMenu(txtUsername.Text));
         }
 
         private void Play_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult res = MessageBox.Show("Bạn có thực sự muốn thoát!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (res != DialogResult.OK)
+            if (check == 0)
             {
-                e.Cancel = true;
-            }
-            else
-            {
-                try
+
+                DialogResult Q = MessageBox.Show("Bạn có chắc muốn thoát Game?", "Warning!", MessageBoxButtons.OKCancel);
+                if (Q == DialogResult.Cancel)
+                    e.Cancel = true;
+                else
                 {
-                    socket.close();
+                    if (quitcheck)
+                    {
+                        // Lose();
+                    }
+                    try
+                    {
+                        socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
+                        socket.close();
+                    }
+                    catch
+                    { }
+
                 }
-                catch { }
             }
         }
 
@@ -223,7 +288,7 @@ namespace Cocaro
                 txtLAN.Text = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
             }
             newGameToolStripMenuItem.Enabled = false;
-            
+
         }
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {

@@ -55,7 +55,7 @@ namespace Cocaro
         }
         private void button2_Click(object sender, EventArgs e)
         {
-                this.Close();
+            this.Close();
             th = new Thread(PlayGame);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
@@ -76,9 +76,9 @@ namespace Cocaro
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-                this.Hide();
-                Rank rank = new Rank();
-                rank.Show(); 
+            this.Hide();
+            Rank rank = new Rank();
+            rank.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)

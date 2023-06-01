@@ -47,29 +47,26 @@
             // 
             // psbCooldownTime
             // 
-            psbCooldownTime.Location = new Point(148, 65);
-            psbCooldownTime.Margin = new Padding(3, 4, 3, 4);
+            psbCooldownTime.Location = new Point(130, 49);
             psbCooldownTime.Name = "psbCooldownTime";
-            psbCooldownTime.Size = new Size(114, 31);
+            psbCooldownTime.Size = new Size(100, 23);
             psbCooldownTime.TabIndex = 10;
             // 
             // ptbPlayer
             // 
             ptbPlayer.Image = (Image)resources.GetObject("ptbPlayer.Image");
             ptbPlayer.Location = new Point(3, 0);
-            ptbPlayer.Margin = new Padding(3, 4, 3, 4);
             ptbPlayer.Name = "ptbPlayer";
-            ptbPlayer.Size = new Size(89, 95);
+            ptbPlayer.Size = new Size(78, 71);
             ptbPlayer.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbPlayer.TabIndex = 9;
             ptbPlayer.TabStop = false;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(148, 4);
-            txtUsername.Margin = new Padding(3, 4, 3, 4);
+            txtUsername.Location = new Point(130, 3);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(114, 27);
+            txtUsername.Size = new Size(100, 23);
             txtUsername.TabIndex = 0;
             txtUsername.TextAlign = HorizontalAlignment.Center;
             txtUsername.TextChanged += txtNamePlayer_TextChanged;
@@ -82,10 +79,9 @@
             // 
             pnlChessBoard.AutoSize = true;
             pnlChessBoard.BackColor = Color.Silver;
-            pnlChessBoard.Location = new Point(0, 36);
-            pnlChessBoard.Margin = new Padding(3, 4, 3, 4);
+            pnlChessBoard.Location = new Point(0, 27);
             pnlChessBoard.Name = "pnlChessBoard";
-            pnlChessBoard.Size = new Size(570, 570);
+            pnlChessBoard.Size = new Size(475, 475);
             pnlChessBoard.TabIndex = 9;
             // 
             // menuStrip1
@@ -94,8 +90,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { newgameToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(875, 30);
+            menuStrip1.Size = new Size(757, 24);
             menuStrip1.TabIndex = 10;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -103,20 +98,20 @@
             // 
             newgameToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newGameToolStripMenuItem1, quitToolStripMenuItem });
             newgameToolStripMenuItem.Name = "newgameToolStripMenuItem";
-            newgameToolStripMenuItem.Size = new Size(60, 24);
+            newgameToolStripMenuItem.Size = new Size(50, 20);
             newgameToolStripMenuItem.Text = "Menu";
             // 
             // newGameToolStripMenuItem1
             // 
             newGameToolStripMenuItem1.Name = "newGameToolStripMenuItem1";
-            newGameToolStripMenuItem1.Size = new Size(161, 26);
+            newGameToolStripMenuItem1.Size = new Size(129, 22);
             newGameToolStripMenuItem1.Text = "NewGame";
             newGameToolStripMenuItem1.Click += newGameToolStripMenuItem1_Click;
             // 
             // quitToolStripMenuItem
             // 
             quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            quitToolStripMenuItem.Size = new Size(161, 26);
+            quitToolStripMenuItem.Size = new Size(129, 22);
             quitToolStripMenuItem.Text = "Quit";
             quitToolStripMenuItem.Click += quitToolStripMenuItem_Click;
             // 
@@ -127,20 +122,20 @@
             panel1.Controls.Add(psbCooldownTime);
             panel1.Controls.Add(ptbPlayer);
             panel1.Controls.Add(txtUsername);
-            panel1.Location = new Point(576, 36);
+            panel1.Location = new Point(481, 27);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(298, 570);
+            panel1.Size = new Size(273, 475);
             panel1.TabIndex = 11;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(875, 612);
+            ClientSize = new Size(757, 507);
             Controls.Add(panel1);
             Controls.Add(pnlChessBoard);
             Controls.Add(menuStrip1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "AIChess";
             FormClosing += Form1_FormClosing;
