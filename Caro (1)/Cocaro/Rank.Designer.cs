@@ -44,7 +44,7 @@
             lsvRank.ForeColor = Color.IndianRed;
             lsvRank.FullRowSelect = true;
             lsvRank.GridLines = true;
-            lsvRank.Location = new Point(117, 87);
+            lsvRank.Location = new Point(116, 92);
             lsvRank.Name = "lsvRank";
             lsvRank.Size = new Size(324, 382);
             lsvRank.TabIndex = 0;
@@ -75,7 +75,7 @@
             customButton1.FlatStyle = FlatStyle.Flat;
             customButton1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             customButton1.ForeColor = Color.OrangeRed;
-            customButton1.Location = new Point(201, 530);
+            customButton1.Location = new Point(196, 527);
             customButton1.Name = "customButton1";
             customButton1.Size = new Size(148, 51);
             customButton1.TabIndex = 1;
@@ -90,10 +90,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(542, 593);
+            ClientSize = new Size(554, 616);
             Controls.Add(customButton1);
             Controls.Add(lsvRank);
             Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MdiChildrenMinimizedAnchorBottom = false;
             Name = "Rank";
             Text = "Rank";

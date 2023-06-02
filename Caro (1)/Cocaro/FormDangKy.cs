@@ -41,7 +41,7 @@ namespace Cocaro
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(txtAnswer.Text) || string.IsNullOrEmpty(cbbQuestion.Text))
             {
                 MessageBox.Show("Mời điền tất cả nội dung");
             }
@@ -58,6 +58,8 @@ namespace Cocaro
                     Password = textBox3.Text,
                     ConfirmPassword = textBox4.Text,
                     Elo = 400,
+                    Question = cbbQuestion.Text,
+                    QuestionAnswer = txtAnswer.Text
                 };
                 SetResponse set = client.Set("users/" + textBox2.Text, register);
                 MessageBox.Show("Đăng ký thành công");

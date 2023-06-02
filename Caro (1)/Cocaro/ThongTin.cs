@@ -44,7 +44,7 @@ namespace Cocaro
         }
         private void customButton4_Click(object sender, EventArgs e)
         {
-            DialogResult res =MessageBox.Show("Bạn có muốn quay lại Menu ?","Thoát",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show("Bạn có muốn quay lại Menu ?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (res == DialogResult.Yes)
             {
                 reOpenMenu();
@@ -56,6 +56,14 @@ namespace Cocaro
             this.Hide();
             MainMenu menu = new MainMenu(btnName.Text);
             menu.Show();
+            this.Close();
+        }
+
+        private void customButton5_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ChangePass change = new ChangePass(FormDangNhap.sdt);
+            change.ShowDialog();
             this.Close();
         }
     }

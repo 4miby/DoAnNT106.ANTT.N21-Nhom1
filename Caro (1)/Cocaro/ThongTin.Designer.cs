@@ -37,15 +37,16 @@
             btnSDT = new CustomButton();
             btnELo = new CustomButton();
             customButton4 = new CustomButton();
+            btnDoiMatKhau = new CustomButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(472, 2);
+            pictureBox1.Location = new Point(315, 28);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(125, 114);
+            pictureBox1.Size = new Size(125, 125);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -59,9 +60,9 @@
             customButton3.BorderSize = 0;
             customButton3.FlatAppearance.BorderSize = 0;
             customButton3.FlatStyle = FlatStyle.Flat;
-            customButton3.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            customButton3.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             customButton3.ForeColor = Color.Crimson;
-            customButton3.Location = new Point(107, 164);
+            customButton3.Location = new Point(89, 175);
             customButton3.Name = "customButton3";
             customButton3.Size = new Size(172, 76);
             customButton3.TabIndex = 4;
@@ -78,9 +79,9 @@
             customButton1.BorderSize = 0;
             customButton1.FlatAppearance.BorderSize = 0;
             customButton1.FlatStyle = FlatStyle.Flat;
-            customButton1.Font = new Font("Segoe UI Black", 10.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            customButton1.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             customButton1.ForeColor = Color.Crimson;
-            customButton1.Location = new Point(107, 272);
+            customButton1.Location = new Point(89, 295);
             customButton1.Name = "customButton1";
             customButton1.Size = new Size(172, 76);
             customButton1.TabIndex = 5;
@@ -97,9 +98,9 @@
             customButton2.BorderSize = 0;
             customButton2.FlatAppearance.BorderSize = 0;
             customButton2.FlatStyle = FlatStyle.Flat;
-            customButton2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            customButton2.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             customButton2.ForeColor = Color.Crimson;
-            customButton2.Location = new Point(107, 380);
+            customButton2.Location = new Point(89, 415);
             customButton2.Name = "customButton2";
             customButton2.Size = new Size(172, 76);
             customButton2.TabIndex = 6;
@@ -109,59 +110,59 @@
             // 
             // btnName
             // 
-            btnName.BackColor = SystemColors.Info;
-            btnName.BackgroundColor = SystemColors.Info;
-            btnName.BorderColor = Color.Honeydew;
+            btnName.BackColor = Color.FromArgb(192, 255, 255);
+            btnName.BackgroundColor = Color.FromArgb(192, 255, 255);
+            btnName.BorderColor = Color.FromArgb(255, 128, 0);
             btnName.BorderRadius = 40;
             btnName.BorderSize = 0;
             btnName.FlatAppearance.BorderSize = 0;
             btnName.FlatStyle = FlatStyle.Flat;
             btnName.Font = new Font("VNI-Centur", 10.7999992F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            btnName.ForeColor = SystemColors.Highlight;
-            btnName.Location = new Point(361, 149);
+            btnName.ForeColor = Color.Blue;
+            btnName.Location = new Point(361, 160);
             btnName.Name = "btnName";
             btnName.Size = new Size(342, 102);
             btnName.TabIndex = 7;
             btnName.Text = "HuyVo";
-            btnName.TextColor = SystemColors.Highlight;
+            btnName.TextColor = Color.Blue;
             btnName.UseVisualStyleBackColor = false;
             // 
             // btnSDT
             // 
-            btnSDT.BackColor = SystemColors.Info;
-            btnSDT.BackgroundColor = SystemColors.Info;
+            btnSDT.BackColor = Color.FromArgb(192, 255, 255);
+            btnSDT.BackgroundColor = Color.FromArgb(192, 255, 255);
             btnSDT.BorderColor = Color.Honeydew;
             btnSDT.BorderRadius = 40;
             btnSDT.BorderSize = 0;
             btnSDT.FlatAppearance.BorderSize = 0;
             btnSDT.FlatStyle = FlatStyle.Flat;
             btnSDT.Font = new Font("VNI-Centur", 10.7999992F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            btnSDT.ForeColor = SystemColors.Highlight;
-            btnSDT.Location = new Point(361, 258);
+            btnSDT.ForeColor = Color.Blue;
+            btnSDT.Location = new Point(361, 280);
             btnSDT.Name = "btnSDT";
             btnSDT.Size = new Size(342, 102);
             btnSDT.TabIndex = 8;
             btnSDT.Text = "HuyVo";
-            btnSDT.TextColor = SystemColors.Highlight;
+            btnSDT.TextColor = Color.Blue;
             btnSDT.UseVisualStyleBackColor = false;
             // 
             // btnELo
             // 
-            btnELo.BackColor = SystemColors.Info;
-            btnELo.BackgroundColor = SystemColors.Info;
+            btnELo.BackColor = Color.FromArgb(192, 255, 255);
+            btnELo.BackgroundColor = Color.FromArgb(192, 255, 255);
             btnELo.BorderColor = Color.Honeydew;
             btnELo.BorderRadius = 40;
             btnELo.BorderSize = 0;
             btnELo.FlatAppearance.BorderSize = 0;
             btnELo.FlatStyle = FlatStyle.Flat;
             btnELo.Font = new Font("VNI-Centur", 10.7999992F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            btnELo.ForeColor = SystemColors.Highlight;
-            btnELo.Location = new Point(361, 364);
+            btnELo.ForeColor = Color.Blue;
+            btnELo.Location = new Point(361, 400);
             btnELo.Name = "btnELo";
             btnELo.Size = new Size(342, 102);
             btnELo.TabIndex = 9;
             btnELo.Text = "HuyVo";
-            btnELo.TextColor = SystemColors.Highlight;
+            btnELo.TextColor = Color.Blue;
             btnELo.UseVisualStyleBackColor = false;
             // 
             // customButton4
@@ -175,7 +176,7 @@
             customButton4.FlatStyle = FlatStyle.Flat;
             customButton4.Font = new Font("Segoe UI Historic", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             customButton4.ForeColor = Color.Crimson;
-            customButton4.Location = new Point(0, 2);
+            customButton4.Location = new Point(58, 28);
             customButton4.Name = "customButton4";
             customButton4.Size = new Size(65, 42);
             customButton4.TabIndex = 10;
@@ -184,13 +185,34 @@
             customButton4.UseVisualStyleBackColor = false;
             customButton4.Click += customButton4_Click;
             // 
+            // btnDoiMatKhau
+            // 
+            btnDoiMatKhau.BackColor = Color.DeepSkyBlue;
+            btnDoiMatKhau.BackgroundColor = Color.DeepSkyBlue;
+            btnDoiMatKhau.BorderColor = Color.PaleTurquoise;
+            btnDoiMatKhau.BorderRadius = 16;
+            btnDoiMatKhau.BorderSize = 0;
+            btnDoiMatKhau.FlatAppearance.BorderSize = 0;
+            btnDoiMatKhau.FlatStyle = FlatStyle.Flat;
+            btnDoiMatKhau.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            btnDoiMatKhau.ForeColor = Color.Crimson;
+            btnDoiMatKhau.Location = new Point(288, 534);
+            btnDoiMatKhau.Name = "btnDoiMatKhau";
+            btnDoiMatKhau.Size = new Size(164, 66);
+            btnDoiMatKhau.TabIndex = 11;
+            btnDoiMatKhau.Text = "Đổi mật khẩu";
+            btnDoiMatKhau.TextColor = Color.Crimson;
+            btnDoiMatKhau.UseVisualStyleBackColor = false;
+            btnDoiMatKhau.Click += customButton5_Click;
+            // 
             // ThongTin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(786, 628);
+            ClientSize = new Size(762, 628);
+            Controls.Add(btnDoiMatKhau);
             Controls.Add(customButton4);
             Controls.Add(btnELo);
             Controls.Add(btnSDT);
@@ -199,6 +221,7 @@
             Controls.Add(customButton1);
             Controls.Add(customButton3);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ThongTin";
             Text = "ThongTin";
             Load += ThongTin_Load;
@@ -216,5 +239,6 @@
         private CustomButton btnSDT;
         private CustomButton btnELo;
         private CustomButton customButton4;
+        private CustomButton btnDoiMatKhau;
     }
 }
