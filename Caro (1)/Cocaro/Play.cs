@@ -12,6 +12,9 @@ using System.Net.NetworkInformation;
 using static Cocaro.Class.SocketData;
 using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.VisualBasic.Logging;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
 
 namespace Cocaro
 {
@@ -25,6 +28,14 @@ namespace Cocaro
         static int index = 0, check = 0;
 
         #endregion
+        IFirebaseConfig config = new FirebaseConfig
+        {
+            AuthSecret = "Y7HTwFyBihudSAw6bBQ85PsKcmCTJaEBNfQ7vxc7",
+            BasePath = "https://caro-79944-default-rtdb.firebaseio.com/"
+        };
+        IFirebaseClient client;
+        public string username;
+        public string sdt;
         public Play()
         {
             InitializeComponent();
@@ -47,6 +58,7 @@ namespace Cocaro
             EndGame();
             socket.Send(new SocketData((int)SocketCommand.END_GAME, "", new Point()));
             MessageBox.Show("Đối thủ quá gà bạn đã chiến thắng!", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Win();
         }
 
         void ChessBoard_PlayerMark(object? sender, ButtonClickEvent e)
@@ -111,6 +123,7 @@ namespace Cocaro
                     EndGame();
                     socket.Send(new SocketData((int)SocketCommand.TIME_OUT, "", new Point()));
                     MessageBox.Show("Hết thời gian suy nghĩ rồi, cố gắng lần sau nhé", "Lose", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Lose();
                 }
             }
         }
@@ -174,7 +187,7 @@ namespace Cocaro
                             EndGame();
                             MessageBox.Show("Đối thủ đã chạy mất dép", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             socket.close();
-                            // Win();
+                            Win();
                         }));
                     }
                     break;
@@ -185,6 +198,7 @@ namespace Cocaro
                         Listen();
                     }));
                     MessageBox.Show("Nice try, Đối thủ quá hay cố gắng lần sau nhé", "Lose", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Lose();
                     break;
                 case (int)SocketCommand.TIME_OUT:
                     this.Invoke((MethodInvoker)(() =>
@@ -193,6 +207,7 @@ namespace Cocaro
                         Listen();
                     }));
                     MessageBox.Show("Đối thủ suy nghĩ quá lâu, bạn đã chiến thắng", "Win", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Win();
                     break;
                 case (int)SocketCommand.NO:
                     MessageBox.Show("Đối thủ không muốn chơi tiếp, Hẹn lần sau!", "Từ chối", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -229,7 +244,7 @@ namespace Cocaro
             {
                 if (quitcheck)
                 {
-                    // Lose();
+                    Lose();
                 }
 
                 try
@@ -266,7 +281,7 @@ namespace Cocaro
                 {
                     if (quitcheck)
                     {
-                        // Lose();
+                        Lose();
                     }
                     try
                     {
@@ -316,10 +331,39 @@ namespace Cocaro
 
         private void btnsend_Click(object sender, EventArgs e)
         {
-            socket.Send(new SocketData((int)SocketCommand.SEND_MESS, txtUsername.Text + " : " + txtmess.Text, new Point()));
-            listView1.Items.Add(new ListViewItem(txtUsername.Text + " : " + txtmess.Text));
+            DateTime date = DateTime.Now;
+            string message = "[" + date.ToString() + "] " + txtUsername.Text + " : " + txtmess.Text;
+            socket.Send(new SocketData((int)SocketCommand.SEND_MESS, message, new Point()));
+            listView1.Items.Add(new ListViewItem(message));
             txtmess.Clear();
             Listen();
+        }
+
+        private void Play_Load(object sender, EventArgs e)
+        {
+            client = new FireSharp.FirebaseClient(config);
+            username = FormDangNhap.username;
+            sdt = FormDangNhap.sdt;
+        }
+        void Win()
+        {
+            FirebaseResponse response = client.Get("users/" + sdt);
+            register update = response.ResultAs<register>();
+            if (update != null)
+            {
+                update.Elo += 15;
+            }
+            client.Update("users/" + sdt, update);
+        }
+        void Lose()
+        {
+            FirebaseResponse response = client.Get("users/" + sdt);
+            register update = response.ResultAs<register>();
+            if (update != null)
+            {
+                update.Elo -= 15;
+            }
+            client.Update("users/" + sdt, update);
         }
     }
 }

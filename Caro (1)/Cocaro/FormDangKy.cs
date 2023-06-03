@@ -56,17 +56,25 @@ namespace Cocaro
                     Name = textBox1.Text,
                     PhoneNumber = textBox2.Text,
                     Password = textBox3.Text,
-                    ConfirmPassword = textBox4.Text,
                     Elo = 400,
                     Question = cbbQuestion.Text,
                     QuestionAnswer = txtAnswer.Text
                 };
                 SetResponse set = client.Set("users/" + textBox2.Text, register);
                 MessageBox.Show("Đăng ký thành công");
+                Clear();
             }
 
         }
-
+        private void Clear()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            txtAnswer.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            cbbQuestion.Text = string.Empty;
+        }
         private void btnThoat_Click(object sender, EventArgs e)
         {
             FormDangNhap formDangNhap = new FormDangNhap();

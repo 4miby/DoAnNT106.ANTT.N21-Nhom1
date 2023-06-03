@@ -301,3 +301,8 @@ E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\obj\Debug\net6.0-w
 E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\obj\Debug\net6.0-windows\ref\Cocaro.dll
 E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\obj\Debug\net6.0-windows\Cocaro.ChangePass.resources
 E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\obj\Debug\net6.0-windows\Cocaro.ForgetPass.resources
+E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\bin\Debug\net6.0-windows\Firebase.Database.dll
+E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\bin\Debug\net6.0-windows\System.Reactive.Core.dll
+E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\bin\Debug\net6.0-windows\System.Reactive.Interfaces.dll
+E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\bin\Debug\net6.0-windows\System.Reactive.Linq.dll
+E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\bin\Debug\net6.0-windows\System.Reactive.PlatformServices.dll

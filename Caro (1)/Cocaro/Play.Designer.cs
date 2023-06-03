@@ -116,23 +116,23 @@
             // 
             // listView1
             // 
-            listView1.Location = new Point(22, 203);
+            listView1.Location = new Point(10, 204);
             listView1.Name = "listView1";
-            listView1.Size = new Size(270, 332);
+            listView1.Size = new Size(289, 387);
             listView1.TabIndex = 7;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.List;
             // 
             // txtmess
             // 
-            txtmess.Location = new Point(23, 543);
+            txtmess.Location = new Point(10, 599);
             txtmess.Name = "txtmess";
-            txtmess.Size = new Size(223, 27);
+            txtmess.Size = new Size(237, 27);
             txtmess.TabIndex = 8;
             // 
             // btnsend
             // 
-            btnsend.Location = new Point(253, 541);
+            btnsend.Location = new Point(268, 597);
             btnsend.Name = "btnsend";
             btnsend.Size = new Size(40, 29);
             btnsend.TabIndex = 9;
@@ -151,7 +151,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(6, 3, 0, 3);
-            menuStrip1.Size = new Size(872, 30);
+            menuStrip1.Size = new Size(882, 30);
             menuStrip1.TabIndex = 10;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -191,9 +191,10 @@
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(prgbCoolDown);
             panel1.Controls.Add(txtUsername);
-            panel1.Location = new Point(561, 27);
+            panel1.Dock = DockStyle.Right;
+            panel1.Location = new Point(571, 30);
             panel1.Name = "panel1";
-            panel1.Size = new Size(311, 633);
+            panel1.Size = new Size(311, 638);
             panel1.TabIndex = 11;
             // 
             // Play
@@ -201,7 +202,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(872, 668);
+            ClientSize = new Size(882, 668);
             Controls.Add(panel1);
             Controls.Add(pnlChessBoard);
             Controls.Add(menuStrip1);
@@ -209,6 +210,7 @@
             Name = "Play";
             Text = "Play";
             FormClosing += Play_FormClosing;
+            Load += Play_Load;
             Shown += Play_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

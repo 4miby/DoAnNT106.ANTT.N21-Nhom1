@@ -64,7 +64,6 @@ namespace Cocaro
                         PhoneNumber = Register.PhoneNumber,
                         Password = txtNewPass.Text,
                         Elo = Register.Elo,
-                        ConfirmPassword = txtConfirmPass.Text,
                         Question=Register.Question,
                         QuestionAnswer=Register.QuestionAnswer
                     };

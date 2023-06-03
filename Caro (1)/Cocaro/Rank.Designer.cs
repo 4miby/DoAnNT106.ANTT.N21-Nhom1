@@ -34,6 +34,7 @@
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
             customButton1 = new CustomButton();
+            label1 = new Label();
             SuspendLayout();
             // 
             // lsvRank
@@ -44,9 +45,9 @@
             lsvRank.ForeColor = Color.IndianRed;
             lsvRank.FullRowSelect = true;
             lsvRank.GridLines = true;
-            lsvRank.Location = new Point(116, 92);
+            lsvRank.Location = new Point(111, 141);
             lsvRank.Name = "lsvRank";
-            lsvRank.Size = new Size(324, 382);
+            lsvRank.Size = new Size(324, 303);
             lsvRank.TabIndex = 0;
             lsvRank.UseCompatibleStateImageBehavior = false;
             lsvRank.View = View.Details;
@@ -84,6 +85,18 @@
             customButton1.UseVisualStyleBackColor = false;
             customButton1.Click += customButton1_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Showcard Gothic", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label1.ForeColor = Color.Crimson;
+            label1.Location = new Point(221, 71);
+            label1.Name = "label1";
+            label1.Size = new Size(112, 35);
+            label1.TabIndex = 2;
+            label1.Text = "TOP 10";
+            // 
             // Rank
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
@@ -91,6 +104,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(554, 616);
+            Controls.Add(label1);
             Controls.Add(customButton1);
             Controls.Add(lsvRank);
             Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
@@ -98,7 +112,9 @@
             MdiChildrenMinimizedAnchorBottom = false;
             Name = "Rank";
             Text = "Rank";
+            Load += Rank_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -108,5 +124,6 @@
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private CustomButton customButton1;
+        private Label label1;
     }
 }

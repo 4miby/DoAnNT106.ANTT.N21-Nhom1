@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDangNhap));
             panel1 = new Panel();
+            btnForgetPass = new CustomButton();
             customButton2 = new CustomButton();
             customButton1 = new CustomButton();
             linkLabel1 = new LinkLabel();
@@ -40,7 +41,6 @@
             label1 = new Label();
             label4 = new Label();
             panel2 = new Panel();
-            btnForgetPass = new CustomButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -62,6 +62,29 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(449, 598);
             panel1.TabIndex = 0;
+            // 
+            // btnForgetPass
+            // 
+            btnForgetPass.BackColor = Color.PaleTurquoise;
+            btnForgetPass.BackgroundColor = Color.PaleTurquoise;
+            btnForgetPass.BorderColor = Color.White;
+            btnForgetPass.BorderRadius = 30;
+            btnForgetPass.BorderSize = 0;
+            btnForgetPass.FlatAppearance.BorderColor = Color.White;
+            btnForgetPass.FlatAppearance.BorderSize = 3;
+            btnForgetPass.FlatAppearance.MouseDownBackColor = Color.Black;
+            btnForgetPass.FlatAppearance.MouseOverBackColor = Color.Black;
+            btnForgetPass.FlatStyle = FlatStyle.Popup;
+            btnForgetPass.Font = new Font("Segoe UI Black", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point);
+            btnForgetPass.ForeColor = Color.White;
+            btnForgetPass.Location = new Point(0, 443);
+            btnForgetPass.Name = "btnForgetPass";
+            btnForgetPass.Size = new Size(446, 46);
+            btnForgetPass.TabIndex = 11;
+            btnForgetPass.Text = "Quên mật khẩu";
+            btnForgetPass.TextColor = Color.White;
+            btnForgetPass.UseVisualStyleBackColor = false;
+            btnForgetPass.Click += btnForgetPass_Click;
             // 
             // customButton2
             // 
@@ -196,28 +219,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(386, 598);
             panel2.TabIndex = 3;
-            // 
-            // btnForgetPass
-            // 
-            btnForgetPass.BackColor = Color.PaleTurquoise;
-            btnForgetPass.BackgroundColor = Color.PaleTurquoise;
-            btnForgetPass.BorderColor = Color.White;
-            btnForgetPass.BorderRadius = 30;
-            btnForgetPass.BorderSize = 0;
-            btnForgetPass.FlatAppearance.BorderColor = Color.White;
-            btnForgetPass.FlatAppearance.BorderSize = 3;
-            btnForgetPass.FlatAppearance.MouseDownBackColor = Color.Black;
-            btnForgetPass.FlatAppearance.MouseOverBackColor = Color.Black;
-            btnForgetPass.FlatStyle = FlatStyle.Popup;
-            btnForgetPass.Font = new Font("Segoe UI Black", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point);
-            btnForgetPass.ForeColor = Color.White;
-            btnForgetPass.Location = new Point(0, 443);
-            btnForgetPass.Name = "btnForgetPass";
-            btnForgetPass.Size = new Size(446, 46);
-            btnForgetPass.TabIndex = 11;
-            btnForgetPass.Text = "Quên mật khẩu";
-            btnForgetPass.TextColor = Color.White;
-            btnForgetPass.UseVisualStyleBackColor = false;
             // 
             // FormDangNhap
             // 

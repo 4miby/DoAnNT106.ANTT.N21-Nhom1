@@ -87,7 +87,7 @@
             // cbbQuestion
             // 
             cbbQuestion.FormattingEnabled = true;
-            cbbQuestion.Items.AddRange(new object[] { "Bạn sinh vào ngày tháng năm nào?", "Bạn sinh ở thành phố nào?", "Con vật yêu thích của bạn là gì?", "Tên người bạn thân nhất của bạn là gì?", "Tên người bạn thân nhất của bạn là gì?" });
+            cbbQuestion.Items.AddRange(new object[] { "Bạn sinh vào ngày tháng năm nào?", "Bạn sinh ở thành phố nào?", "Con vật yêu thích của bạn là gì?", "Tên người bạn thân nhất của bạn là gì?", "Bạn có bao nhiêu anh em ruột?", "Tên trường học tiểu học của bạn là gì? " });
             cbbQuestion.Location = new Point(259, 262);
             cbbQuestion.Name = "cbbQuestion";
             cbbQuestion.Size = new Size(245, 28);
@@ -129,7 +129,7 @@
             // 
             // btnThoat
             // 
-            btnThoat.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnThoat.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnThoat.ForeColor = Color.Red;
             btnThoat.Location = new Point(158, 412);
             btnThoat.Name = "btnThoat";
@@ -159,7 +159,7 @@
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = Color.Red;
             button1.Location = new Point(158, 358);
             button1.Name = "button1";

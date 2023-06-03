@@ -78,5 +78,13 @@ namespace Cocaro
                 Application.Exit();
             }
         }
+
+        private void btnForgetPass_Click(object sender, EventArgs e)
+        {
+            ForgetPass forgetPass = new ForgetPass();
+            this.Hide();
+            forgetPass.Show();
+
+        }
     }
 }
