@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
@@ -57,6 +58,7 @@ namespace Cocaro
                 };
                 if (register.IsEqual(register, curuser))
                 {
+                    client.SetAsync("users/" + register.PhoneNumber + "/Ip", GetIPAddress());
                     FormDangNhap.username = register.Name.ToString();
                     FormDangNhap.sdt = register.PhoneNumber.ToString();
                     MainMenu mainMenu = new MainMenu(username);
@@ -85,6 +87,22 @@ namespace Cocaro
             this.Hide();
             forgetPass.Show();
 
+        }
+        private string GetIPAddress()
+        {
+            string IPAddress = string.Empty;
+            IPHostEntry Host = default(IPHostEntry);
+            string Hostname = null;
+            Hostname = System.Environment.MachineName;
+            Host = Dns.GetHostEntry(Hostname);
+            foreach (IPAddress IP in Host.AddressList)
+            {
+                if (IP.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    IPAddress = Convert.ToString(IP);
+                }
+            }
+            return IPAddress;
         }
     }
 }

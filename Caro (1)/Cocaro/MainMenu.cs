@@ -49,18 +49,13 @@ namespace Cocaro
             thongtin.ShowDialog();
             this.Close();
         }
-        void PlayGame()
-        {
-            Application.Run(new Play());
-        }
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            Room room = new Room();
+            room.ShowDialog();
             this.Close();
-            th = new Thread(PlayGame);
-            th.SetApartmentState(ApartmentState.STA);
-            th.Start();
         }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Close();

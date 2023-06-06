@@ -306,3 +306,5 @@ E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\bin\Debug\net6.0-w
 E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\bin\Debug\net6.0-windows\System.Reactive.Interfaces.dll
 E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\bin\Debug\net6.0-windows\System.Reactive.Linq.dll
 E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\bin\Debug\net6.0-windows\System.Reactive.PlatformServices.dll
+E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\obj\Debug\net6.0-windows\Cocaro.Room.resources
+E:\Kì 2 năm 2\Lập trình mạng\NT106DoAn\Caro (1)\Cocaro\obj\Debug\net6.0-windows\Cocaro.ListRoom.resources

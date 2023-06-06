@@ -58,7 +58,8 @@ namespace Cocaro
                     Password = textBox3.Text,
                     Elo = 400,
                     Question = cbbQuestion.Text,
-                    QuestionAnswer = txtAnswer.Text
+                    QuestionAnswer = txtAnswer.Text,
+                    Ip=""
                 };
                 SetResponse set = client.Set("users/" + textBox2.Text, register);
                 var history = new History

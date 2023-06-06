@@ -10,6 +10,9 @@
     <Compile Update="ForgetPass.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ListRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Play.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -17,6 +20,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Rank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Room.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ThongTin.cs">

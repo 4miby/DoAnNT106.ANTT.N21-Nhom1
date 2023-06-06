@@ -251,10 +251,11 @@ namespace Cocaro
                 {
                     socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
                     socket.close();
-
                 }
                 catch
-                { }
+                {
+                   
+                }
                 this.Close();
                 Thread th = new Thread(reopenMenu);
                 th.SetApartmentState(ApartmentState.STA);
@@ -265,7 +266,6 @@ namespace Cocaro
 
         private void reopenMenu(object? obj)
         {
-
             Application.Run(new MainMenu(txtUsername.Text));
         }
 
@@ -303,7 +303,6 @@ namespace Cocaro
                 txtLAN.Text = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
             }
             newGameToolStripMenuItem.Enabled = false;
-
         }
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {

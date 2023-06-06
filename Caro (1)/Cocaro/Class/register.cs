@@ -14,6 +14,7 @@ namespace Cocaro
         public int Elo { get; set; }
         public string? Question { get; set; }
         public string? QuestionAnswer { get; set; }
+        public string? Ip { get; set; } 
         private static string error = "Phone number doesn't exist!";
         public static void ShowError()
         {
