@@ -33,21 +33,23 @@
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
             customButton1 = new CustomButton();
             label1 = new Label();
             SuspendLayout();
             // 
             // lsvRank
             // 
-            lsvRank.BackColor = Color.LightSkyBlue;
-            lsvRank.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
+            lsvRank.BackColor = Color.LightCyan;
+            lsvRank.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
             lsvRank.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             lsvRank.ForeColor = Color.IndianRed;
             lsvRank.FullRowSelect = true;
             lsvRank.GridLines = true;
-            lsvRank.Location = new Point(111, 141);
+            lsvRank.Location = new Point(86, 135);
             lsvRank.Name = "lsvRank";
-            lsvRank.Size = new Size(324, 303);
+            lsvRank.Size = new Size(469, 305);
             lsvRank.TabIndex = 0;
             lsvRank.UseCompatibleStateImageBehavior = false;
             lsvRank.View = View.Details;
@@ -55,15 +57,27 @@
             // columnHeader1
             // 
             columnHeader1.Text = "Top";
+            columnHeader1.Width = 50;
             // 
             // columnHeader2
             // 
             columnHeader2.Text = "Tên người chơi";
-            columnHeader2.Width = 200;
+            columnHeader2.Width = 150;
             // 
             // columnHeader3
             // 
             columnHeader3.Text = "Elo";
+            columnHeader3.Width = 65;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Số trận";
+            columnHeader4.Width = 80;
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "Tỉ lệ thắng";
+            columnHeader5.Width = 120;
             // 
             // customButton1
             // 
@@ -76,7 +90,7 @@
             customButton1.FlatStyle = FlatStyle.Flat;
             customButton1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             customButton1.ForeColor = Color.OrangeRed;
-            customButton1.Location = new Point(196, 527);
+            customButton1.Location = new Point(258, 475);
             customButton1.Name = "customButton1";
             customButton1.Size = new Size(148, 51);
             customButton1.TabIndex = 1;
@@ -91,7 +105,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Showcard Gothic", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label1.ForeColor = Color.Crimson;
-            label1.Location = new Point(221, 71);
+            label1.Location = new Point(271, 79);
             label1.Name = "label1";
             label1.Size = new Size(112, 35);
             label1.TabIndex = 2;
@@ -103,7 +117,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(554, 616);
+            ClientSize = new Size(627, 616);
             Controls.Add(label1);
             Controls.Add(customButton1);
             Controls.Add(lsvRank);
@@ -125,5 +139,7 @@
         private ColumnHeader columnHeader3;
         private CustomButton customButton1;
         private Label label1;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
     }
 }

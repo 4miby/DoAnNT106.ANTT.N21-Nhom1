@@ -349,21 +349,24 @@ namespace Cocaro
         {
             FirebaseResponse response = client.Get("users/" + sdt);
             register update = response.ResultAs<register>();
-            if (update != null)
-            {
-                update.Elo += 15;
-            }
+            update.Elo += 15;
             client.Update("users/" + sdt, update);
+            response = client.Get("History/" + sdt);
+            History history=response.ResultAs<History>();
+            history.winmatch += 1;
+            history.match += 1;
+            client.Update("History/" + sdt,history);
         }
         void Lose()
         {
             FirebaseResponse response = client.Get("users/" + sdt);
-            register update = response.ResultAs<register>();
-            if (update != null)
-            {
-                update.Elo -= 15;
-            }
+            register update = response.ResultAs<register>();            
+            update.Elo -= 15;
             client.Update("users/" + sdt, update);
+            response = client.Get("History/" + sdt);
+            History history = response.ResultAs<History>();
+            history.match += 1;
+            client.Update("History/" + sdt, history);
         }
     }
 }

@@ -41,6 +41,20 @@ namespace Cocaro
                 btnSDT.Text = register.PhoneNumber;
                 btnELo.Text = register.Elo.ToString();
             }
+            response = client.Get("History/" + sdt);
+            History history = response.ResultAs<History>();
+            {
+                btnMatch.Text=history.match.ToString();
+                if(history.match==0)
+                {
+                    btnWinrate.Text = "0%";
+                }
+                else
+                {
+                    double winrate = ((double)history.winmatch / history.match) * 100;
+                    btnWinrate.Text=winrate.ToString()+"%";
+                }
+            }
         }
         private void customButton4_Click(object sender, EventArgs e)
         {

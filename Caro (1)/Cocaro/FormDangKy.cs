@@ -61,6 +61,13 @@ namespace Cocaro
                     QuestionAnswer = txtAnswer.Text
                 };
                 SetResponse set = client.Set("users/" + textBox2.Text, register);
+                var history = new History
+                {
+                    username = textBox1.Text,
+                    match = 0,
+                    winmatch = 0,
+                };
+                SetResponse set1=client.Set("History/"+textBox2.Text, history);
                 MessageBox.Show("Đăng ký thành công");
                 Clear();
             }
