@@ -9,11 +9,22 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Firebase.Database;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using Newtonsoft.Json;
 
 namespace Cocaro
 {
     public partial class ListRoom : Form
     {
+        IFirebaseConfig config = new FirebaseConfig()
+        {
+            AuthSecret = "Y7HTwFyBihudSAw6bBQ85PsKcmCTJaEBNfQ7vxc7",
+            BasePath = "https://caro-79944-default-rtdb.firebaseio.com/"
+        };
+        IFirebaseClient client;
         Thread th;
         private string BaseIP = "127.0.0.";
         private int StartIP = 2;
@@ -78,19 +89,35 @@ namespace Cocaro
             {
                 lock (lockObj)
                 {
-                    if (ip != GetIPAddress())
+                    FirebaseResponse res = client.Get(@"users");
+                    Dictionary<string, register> data = JsonConvert.DeserializeObject<Dictionary<string, register>>(res.Body.ToString());
+                    foreach (var item in data)
                     {
-                        ListViewItem item = new ListViewItem();
-                        item.Text = ip;
-                        listView1.Items.Add(item);
-                        nFound++;
+                        if (ip != GetIPAddress() && ip == item.Value.Ip)
+                        {
+                            ListViewItem lv_item = new ListViewItem();
+                            lv_item.Text = ip;
+                            lv_item.SubItems.Add(item.Value.Name);
+                            listView1.Items.Add(lv_item);
+                            nFound++;
+                        }
                     }
+                    
                 }
             }
         }
 
         private void ListRoom_Load(object sender, EventArgs e)
         {
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Check your connection!");
+            }
             RunPingSweep_Async(GetIPAddress().Remove(GetIPAddress().LastIndexOf(".")));
             username = FormDangNhap.username;
         }

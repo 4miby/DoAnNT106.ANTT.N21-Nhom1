@@ -622,19 +622,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HUY\\.nuget\\packages\\": {}
+    "C:\\Users\\Computer\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Kì 2 năm 2\\Lập trình mạng\\BackUp\\Cocaro\\Cocaro.csproj",
+      "projectUniqueName": "D:\\projectmmt\\NT106DoAn\\Cocaro\\Cocaro.csproj",
       "projectName": "Cocaro",
-      "projectPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\BackUp\\Cocaro\\Cocaro.csproj",
-      "packagesPath": "C:\\Users\\HUY\\.nuget\\packages\\",
-      "outputPath": "E:\\Kì 2 năm 2\\Lập trình mạng\\BackUp\\Cocaro\\obj\\",
+      "projectPath": "D:\\projectmmt\\NT106DoAn\\Cocaro\\Cocaro.csproj",
+      "packagesPath": "C:\\Users\\Computer\\.nuget\\packages\\",
+      "outputPath": "D:\\projectmmt\\NT106DoAn\\Cocaro\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HUY\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Computer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

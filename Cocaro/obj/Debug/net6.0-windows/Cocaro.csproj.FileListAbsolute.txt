@@ -349,3 +349,14 @@ E:\Kì 2 năm 2\Lập trình mạng\BackUp\Cocaro\obj\Debug\net6.0-windows\refin
 E:\Kì 2 năm 2\Lập trình mạng\BackUp\Cocaro\obj\Debug\net6.0-windows\Cocaro.pdb
 E:\Kì 2 năm 2\Lập trình mạng\BackUp\Cocaro\obj\Debug\net6.0-windows\Cocaro.genruntimeconfig.cache
 E:\Kì 2 năm 2\Lập trình mạng\BackUp\Cocaro\obj\Debug\net6.0-windows\ref\Cocaro.dll
+D:\projectmmt\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\Firebase.Database.dll
+D:\projectmmt\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\System.Reactive.Core.dll
+D:\projectmmt\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\System.Reactive.Interfaces.dll
+D:\projectmmt\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\System.Reactive.Linq.dll
+D:\projectmmt\NT106DoAn\Cocaro\bin\Debug\net6.0-windows\System.Reactive.PlatformServices.dll
+D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.ChangePass.resources
+D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.ForgetPass.resources
+D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.ListRoom.resources
+D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.Form1.resources
+D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.Rank.resources
+D:\projectmmt\NT106DoAn\Cocaro\obj\Debug\net6.0-windows\Cocaro.Room.resources
